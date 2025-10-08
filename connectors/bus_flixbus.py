@@ -1,98 +1,47 @@
-import requests
 import pandas as pd
+import zipfile
+import io
+import requests
 
-# --- FlixBus public API endpoints ---
-API_URL = "https://global.api.flixbus.com/search/service/v4/search"
-LOCATIONS_URL = "https://global.api.flixbus.com/locations?country=all&locale=en"
+GTFS_URL = "https://gtfs.global.flixbus.com/flixbus.zip"
 
 def fetch_routes():
-    print("Fetching FlixBus routes...")
+    print("Fetching FlixBus GTFS feed...")
 
-    # Get all available stops (cities)
-    resp = requests.get(LOCATIONS_URL, timeout=60)
-    data = resp.json()
+    # Download GTFS zip
+    r = requests.get(GTFS_URL, timeout=120)
+    r.raise_for_status()
 
-    # Sometimes API returns {"data": [...]}, sometimes a list
-    if isinstance(data, dict) and "data" in data:
-        stops = data["data"]
-    elif isinstance(data, list):
-        stops = data
-    else:
-        raise ValueError("Unexpected FlixBus API format for /locations")
+    z = zipfile.ZipFile(io.BytesIO(r.content))
 
-    # Normalize structure
-    city_list = []
-    for s in stops:
-        if isinstance(s, dict):
-            city_list.append({
-                "id": s.get("id"),
-                "name": s.get("name"),
-                "country": {"name": s.get("country_name") or s.get("country") or "Unknown"}
-            })
+    stops = pd.read_csv(z.open("stops.txt"))
+    routes = pd.read_csv(z.open("routes.txt"))
+    trips = pd.read_csv(z.open("trips.txt"))
+    stop_times = pd.read_csv(z.open("stop_times.txt"))
 
-    rows = []
-    for origin in city_list[:300]:  # limit for speed (adjust later)
-        origin_id = origin["id"]
-        origin_city = origin["name"]
-        origin_country = origin["country"]["name"]
+    # Join to get start and end stops for each trip
+    first_stops = stop_times.sort_values(["trip_id", "stop_sequence"]).groupby("trip_id").first().reset_index()
+    last_stops = stop_times.sort_values(["trip_id", "stop_sequence"]).groupby("trip_id").last().reset_index()
 
-        for dest in city_list:
-            if dest["id"] == origin_id:
-                continue
-            dest_city = dest["name"]
-            dest_country = dest["country"]["name"]
+    merged = trips.merge(routes, on="route_id", how="left")
+    merged = merged.merge(first_stops[["trip_id", "stop_id"]].rename(columns={"stop_id": "origin_stop_id"}), on="trip_id", how="left")
+    merged = merged.merge(last_stops[["trip_id", "stop_id"]].rename(columns={"stop_id": "dest_stop_id"}), on="trip_id", how="left")
 
-            params = {
-                "from_id": origin_id,
-                "to_id": dest["id"],
-                "adult": 1,
-                "currency": "EUR",
-                "locale": "en",
-                "products": "bus"
-            }
-            try:
-                r = requests.get(API_URL, params=params, timeout=10)
-                if r.status_code != 200:
-                    continue
-                data = r.json()
-                trips = data.get("trips", [])
-                if not trips:
-                    continue
+    merged = merged.merge(stops[["stop_id", "stop_name"]].rename(columns={"stop_id": "origin_stop_id", "stop_name": "origin_stop_name"}), on="origin_stop_id", how="left")
+    merged = merged.merge(stops[["stop_id", "stop_name"]].rename(columns={"stop_id": "dest_stop_id", "stop_name": "dest_stop_name"}), on="dest_stop_id", how="left")
 
-                # Take the first trip for that pair
-                trip = trips[0]
-                duration_minutes = trip.get("duration", 0)
-                h, m = divmod(duration_minutes, 60)
-                duration_str = f"{h:02d}:{m:02d}"
+    merged = merged.dropna(subset=["origin_stop_name", "dest_stop_name"]).drop_duplicates(subset=["origin_stop_name", "dest_stop_name"])
 
-                # Frequency bucket (approximation based on trip count)
-                freq = len(trips)
-                if freq <= 5:
-                    freq_bucket = "Very Low"
-                elif freq <= 15:
-                    freq_bucket = "Low"
-                elif freq <= 25:
-                    freq_bucket = "Average"
-                elif freq <= 35:
-                    freq_bucket = "High"
-                else:
-                    freq_bucket = "Very High"
+    df = merged[["origin_stop_name", "dest_stop_name", "route_long_name"]].copy()
+    df = df.rename(columns={
+        "origin_stop_name": "origin_city",
+        "dest_stop_name": "destination_city",
+        "route_long_name": "operator_name"
+    })
+    df["transport_type"] = "bus"
+    df["duration"] = None
+    df["frequency"] = None
+    df["frequency_bucket"] = None
 
-                rows.append([
-                    origin_city, origin_country,
-                    dest_city, dest_country,
-                    "FlixBus",
-                    duration_str,
-                    freq,
-                    freq_bucket
-                ])
-            except Exception:
-                continue
-
-    df = pd.DataFrame(rows, columns=[
-        "origin_city","origin_country",
-        "destination_city","destination_country",
-        "operator_name","duration","frequency","frequency_bucket"
-    ])
-    print(f"Fetched {len(df)} routes from FlixBus.")
+    print(f"Fetched {len(df)} direct FlixBus routes.")
     return df
