@@ -9,9 +9,28 @@ def fetch_routes():
     print("Fetching FlixBus routes...")
 
     # Get all available stops (cities)
-    stops_url = "https://global.api.flixbus.com/locations?country=all&locale=en"
-    stops = requests.get(stops_url, timeout=60).json()
-    city_list = [s for s in stops if s.get("country") and s.get("name")]
+stops_url = "https://global.api.flixbus.com/locations?country=all&locale=en"
+resp = requests.get(stops_url, timeout=60)
+data = resp.json()
+
+# Sometimes the API wraps data inside a key called "data" or returns plain list
+if isinstance(data, dict) and "data" in data:
+    stops = data["data"]
+elif isinstance(data, list):
+    stops = data
+else:
+    raise ValueError("Unexpected FlixBus API format for /locations")
+
+# Each stop may have nested structure — normalize it
+city_list = []
+for s in stops:
+    if isinstance(s, dict):
+        city_list.append({
+            "id": s.get("id"),
+            "name": s.get("name"),
+            "country": {"name": s.get("country_name") or s.get("country") or "Unknown"}
+        })
+
 
     rows = []
     for origin in city_list[:300]:  # limit for speed; can increase later
