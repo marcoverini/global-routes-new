@@ -1,12 +1,38 @@
-import io, zipfile, time, re
+import io, zipfile, time, re, math
 import requests
 import pandas as pd
 
 FEEDS = [
     "https://gtfs.gis.flix.tech/gtfs_generic_eu.zip",
     "https://gtfs.gis.flix.tech/gtfs_generic_us.zip",
-    "http://gtfs.gis.flix.tech/gtfs_generic_us.zip",
 ]
+
+# ---- SIMPLE GEO COUNTRY BOUNDS ----
+COUNTRY_BOUNDS = {
+    "ES": [(36, -9.5), (43.8, 3.3)],
+    "FR": [(41, -5.2), (51.3, 9.7)],
+    "IT": [(36.4, 6.6), (47.1, 18.5)],
+    "DE": [(47.0, 5.5), (55.2, 15.2)],
+    "CH": [(45.7, 5.9), (47.9, 10.5)],
+    "AT": [(46.3, 9.3), (49.1, 17.0)],
+    "BE": [(49.5, 2.5), (51.6, 6.4)],
+    "NL": [(50.6, 3.3), (53.7, 7.2)],
+    "GB": [(49.9, -8.6), (59.4, 2.0)],
+    "PT": [(36.9, -9.5), (42.2, -6.2)],
+    "PL": [(49.0, 14.1), (54.9, 24.2)],
+    "CZ": [(48.5, 12.1), (51.1, 18.9)],
+    "US": [(24.5, -125.0), (49.4, -66.9)],
+}
+
+def _infer_country(lat, lon):
+    try:
+        lat, lon = float(lat), float(lon)
+    except:
+        return None
+    for code, ((minlat, minlon), (maxlat, maxlon)) in COUNTRY_BOUNDS.items():
+        if minlat <= lat <= maxlat and minlon <= lon <= maxlon:
+            return code
+    return None
 
 def _get_with_retries(url, tries=3, timeout=120):
     err = None
@@ -35,17 +61,20 @@ def _sec_to_hhmm(s):
     m = (s % 3600) // 60
     return f"{int(h):02d}:{int(m):02d}"
 
-def _extract_city_country(name):
-    """Extract city and country code if present, e.g. 'Berlin central bus station [DE]'"""
-    if not isinstance(name, str):
-        return None, None
-    # Common suffix clean-up
-    city = re.sub(r"\b(Bus( station| stop)?|Autostazione|ZOB|Gare routière|Terminal)\b.*", "", name, flags=re.I).strip()
-    city = city.split(",")[0].strip()
-
-    m = re.search(r"\[([A-Z]{2})\]", name)
-    country = m.group(1) if m else None
-    return city, country
+def _extract_city(name):
+    """Cleaner city extraction from station name"""
+    if not isinstance(name, str) or not name.strip():
+        return None
+    name = re.sub(r"\b(Bus( station| stop)?|Autostazione|ZOB|Gare routière|Terminal)\b", "", name, flags=re.I)
+    name = re.sub(r"\s+", " ", name).strip(" ,;:-")
+    # Remove trailing common words like 'central', 'station' only if at end
+    name = re.sub(r"( central| station| Hbf| main)$", "", name, flags=re.I).strip(" ,;:-")
+    # If it starts with a parenthesis (like '(im Breisgau)'), remove that
+    name = re.sub(r"^\(", "", name)
+    # Close parentheses if missing
+    if name.count("(") > name.count(")"):
+        name += ")"
+    return name.strip()
 
 def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     z = zipfile.ZipFile(io.BytesIO(zip_bytes))
@@ -59,7 +88,7 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     routes = rd("routes.txt", usecols=["route_id","route_type"])
     trips = rd("trips.txt", usecols=["route_id","trip_id","service_id"])
     stop_times = rd("stop_times.txt", usecols=["trip_id","arrival_time","departure_time","stop_id","stop_sequence"])
-    stops = rd("stops.txt", usecols=["stop_id","stop_name"])
+    stops = rd("stops.txt", usecols=["stop_id","stop_name","stop_lat","stop_lon"])
 
     if routes.empty or trips.empty or stop_times.empty or stops.empty:
         return pd.DataFrame()
@@ -75,10 +104,9 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     last.columns = ["trip_id","t1","dest_stop"]
 
     merged = trips.merge(first, on="trip_id").merge(last, on="trip_id")
-    merged = merged.merge(stops.rename(columns={"stop_id":"origin_stop","stop_name":"origin_station"}), on="origin_stop", how="left")
-    merged = merged.merge(stops.rename(columns={"stop_id":"dest_stop","stop_name":"destination_station"}), on="dest_stop", how="left")
+    merged = merged.merge(stops.rename(columns={"stop_id":"origin_stop","stop_name":"origin_station","stop_lat":"origin_lat","stop_lon":"origin_lon"}), on="origin_stop", how="left")
+    merged = merged.merge(stops.rename(columns={"stop_id":"dest_stop","stop_name":"destination_station","stop_lat":"dest_lat","stop_lon":"dest_lon"}), on="dest_stop", how="left")
 
-    # Duration
     merged["dur_sec"] = merged.apply(
         lambda r: (_parse_time_to_sec(r["t1"]) - _parse_time_to_sec(r["t0"]))
         if (_parse_time_to_sec(r["t1"]) and _parse_time_to_sec(r["t0"])) else None,
@@ -86,13 +114,13 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     )
     merged = merged[(merged["dur_sec"].notna()) & (merged["dur_sec"] > 0) & (merged["dur_sec"] < 48*3600)]
 
-    # City & country
-    merged[["origin_city","origin_country"]] = merged["origin_station"].apply(
-        lambda x: pd.Series(_extract_city_country(x))
-    )
-    merged[["destination_city","destination_country"]] = merged["destination_station"].apply(
-        lambda x: pd.Series(_extract_city_country(x))
-    )
+    # City extraction
+    merged["origin_city"] = merged["origin_station"].apply(_extract_city)
+    merged["destination_city"] = merged["destination_station"].apply(_extract_city)
+
+    # Country inference from lat/lon
+    merged["origin_country"] = merged.apply(lambda r: _infer_country(r["origin_lat"], r["origin_lon"]), axis=1)
+    merged["destination_country"] = merged.apply(lambda r: _infer_country(r["dest_lat"], r["dest_lon"]), axis=1)
 
     # Frequency estimation
     freq = merged.groupby(["origin_city","destination_city"]).size().reset_index(name="trip_count")
@@ -121,7 +149,7 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     return df
 
 def fetch_routes():
-    print("Fetching FlixBus (GTFS) with city + country + frequency...")
+    print("Fetching FlixBus (GTFS) with city + inferred country + frequency...")
     frames = []
     for url in FEEDS:
         try:
