@@ -79,11 +79,12 @@ def _extract_city(name):
 def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     z = zipfile.ZipFile(io.BytesIO(zip_bytes))
 
-    def rd(name, usecols=None):
-        try:
-            return pd.read_csv(z.open(name), dtype=str, usecols=usecols)
-        except KeyError:
-            return pd.DataFrame()
+def rd(name, usecols=None):
+    try:
+        return pd.read_csv(z.open(name), dtype=str, usecols=usecols, encoding="latin1", on_bad_lines="skip")
+    except KeyError:
+        return pd.DataFrame()
+
 
     routes = rd("routes.txt", usecols=["route_id","route_type"])
     trips = rd("trips.txt", usecols=["route_id","trip_id","service_id"])
