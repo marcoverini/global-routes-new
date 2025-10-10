@@ -8,7 +8,8 @@ from connectors.bus_flixbus import (
 
 BODS_GTFS_ALL = "https://data.bus-data.dft.gov.uk/timetable/download/gtfs-file/all/"
 OPERATOR_NAME = "Megabus UK"
-AGENCY_MATCH  = ["megabus", "megabus uk", "megabus europe"]
+import re
+AGENCY_PATTERN = re.compile("mega", re.IGNORECASE)
 
 def _http_get(url, tries=3, timeout=180):
     err = None
