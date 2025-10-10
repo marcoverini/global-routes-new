@@ -82,8 +82,34 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
 
     def rd(name, usecols=None):
         try:
-            # Latin-1 encoding fix for accented characters
-            return pd.read_csv(z.open(name), dtype=str, usecols=usecols, encoding="latin1", on_bad_lines="skip")
+            df = pd.read_csv(
+                z.open(name),
+                dtype=str,
+                usecols=usecols,
+                encoding="latin1",
+                on_bad_lines="skip"
+            )
+
+            # --- Fix double-encoded characters (e.g. MalmĂ¶ -> Malmö) ---
+            def _fix_encoding(val):
+                if not isinstance(val, str):
+                    return val
+                try:
+                    return val.encode("latin1").decode("utf-8")
+                except Exception:
+                    return val
+            for col in df.columns:
+                df[col] = df[col].apply(_fix_encoding)
+
+            # Unicode normalization (handles rare mixed encodings)
+            try:
+                import unicodedata
+                df = df.applymap(lambda x: unicodedata.normalize("NFC", x) if isinstance(x, str) else x)
+            except Exception:
+                pass
+
+            return df
+
         except KeyError:
             return pd.DataFrame()
 
@@ -149,7 +175,7 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     return df
 
 def fetch_routes():
-    print("Fetching FlixBus (GTFS) with proper encoding, city, and country detection...")
+    print("Fetching FlixBus (GTFS) with full encoding & country fixes...")
     frames = []
     for url in FEEDS:
         try:
