@@ -1,6 +1,7 @@
 import io, zipfile, time, re
 import requests
 import pandas as pd
+from ftfy import fix_text  # <--- ensures perfect accent/character repair
 
 FEEDS = [
     "https://gtfs.gis.flix.tech/gtfs_generic_eu.zip",
@@ -90,26 +91,19 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
                 on_bad_lines="skip"
             )
 
-            # --- Fix double-encoded characters (e.g. MalmĂ¶ -> Malmö) ---
+            # --- Fix mixed encodings ---
             def _fix_encoding(val):
                 if not isinstance(val, str):
                     return val
                 try:
-                    return val.encode("latin1").decode("utf-8")
+                    val = val.encode("latin1").decode("utf-8")
                 except Exception:
-                    return val
+                    pass
+                return fix_text(val)
+
             for col in df.columns:
                 df[col] = df[col].apply(_fix_encoding)
-
-            # Unicode normalization (handles rare mixed encodings)
-            try:
-                import unicodedata
-                df = df.applymap(lambda x: unicodedata.normalize("NFC", x) if isinstance(x, str) else x)
-            except Exception:
-                pass
-
             return df
-
         except KeyError:
             return pd.DataFrame()
 
@@ -122,7 +116,7 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
         print("One of the GTFS files is empty — skipping feed.")
         return pd.DataFrame()
 
-    routes = routes[routes["route_type"].astype(str) == "3"]  # only buses
+    routes = routes[routes["route_type"].astype(str) == "3"]
     trips = trips.merge(routes, on="route_id", how="inner")
 
     stop_times["stop_sequence"] = pd.to_numeric(stop_times["stop_sequence"], errors="coerce").fillna(0).astype(int)
@@ -145,7 +139,6 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
 
     merged["origin_city"] = merged["origin_station"].apply(_extract_city)
     merged["destination_city"] = merged["destination_station"].apply(_extract_city)
-
     merged["origin_country"] = merged.apply(lambda r: _infer_country(r["origin_lat"], r["origin_lon"]), axis=1)
     merged["destination_country"] = merged.apply(lambda r: _infer_country(r["dest_lat"], r["dest_lon"]), axis=1)
 
@@ -175,7 +168,7 @@ def _parse_gtfs_zip(zip_bytes, feed_label="FlixBus"):
     return df
 
 def fetch_routes():
-    print("Fetching FlixBus (GTFS) with full encoding & country fixes...")
+    print("Fetching FlixBus GTFS feeds with ftfy text repair...")
     frames = []
     for url in FEEDS:
         try:
