@@ -65,9 +65,10 @@ def _build_df(zbytes: bytes) -> pd.DataFrame:
 
     agencies = _read_csv(zf, "agency.txt", usecols=["agency_id","agency_name"])
     agencies["__n"] = agencies["agency_name"].str.lower()
-    keep_agency_ids = agencies.loc[
-        agencies["__n"].str.contains("|".join(AGENCY_MATCH), na=False),
-        "agency_id"
+keep_agency_ids = agencies.loc[
+    agencies["agency_name"].apply(lambda x: bool(AGENCY_PATTERN.search(str(x)))),
+    "agency_id"
+]
     ].dropna().astype(str).unique().tolist()
 
     routes = _read_csv(zf, "routes.txt", usecols=["route_id","agency_id"])
