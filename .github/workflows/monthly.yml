@@ -4,6 +4,8 @@ on:
   workflow_dispatch: {}
   schedule:
     - cron: "0 6 1 * *"   # runs monthly at 06:00 UTC on the 1st of every month
+permissions:
+  contents: write
 
 jobs:
   build:
