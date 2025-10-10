@@ -1,109 +1,124 @@
-import io, zipfile, time, re
-import requests
-import pandas as pd
-from ftfy import fix_text
+# connectors/bus_nationalexpress.py
+import io, zipfile, pandas as pd
 from connectors.bus_flixbus import (
-    _parse_time_to_sec, _sec_to_hhmm, _extract_city,
-    _infer_country
+    _get_with_retries, _parse_time_to_sec, _sec_to_hhmm, _extract_city, _infer_country
 )
 
-def _get_with_retries(url, tries=3, timeout=120):
-    err = None
-    for i in range(tries):
+# UK DfT Bus Open Data GTFS "ALL" export (includes NCSD coach ops).
+BODS_GTFS_ALL = "https://data.bus-data.dft.gov.uk/timetable/download/gtfs-file/all/"
+OPERATOR_NAME = "National Express"
+AGENCY_MATCH  = ["national express", "national express ireland", "natex"]
+
+def _read_csv(zf: zipfile.ZipFile, name: str) -> pd.DataFrame:
+    with zf.open(name) as f:
+        raw = f.read()
+    for enc in ("utf-8","utf-8-sig","latin-1"):
         try:
-            r = requests.get(url, timeout=timeout)
-            if r.status_code == 200:
-                return r.content
-            err = f"HTTP {r.status_code}"
-        except Exception as e:
-            err = str(e)
-        time.sleep(2)
-    raise RuntimeError(f"Download failed for {url}: {err}")
+            return pd.read_csv(io.BytesIO(raw), encoding=enc)
+        except Exception:
+            continue
+    return pd.read_csv(io.BytesIO(raw), encoding="utf-8", errors="ignore")
 
-def _parse_gtfs_zip(zip_bytes, feed_label):
-    z = zipfile.ZipFile(io.BytesIO(zip_bytes))
+def _subset_by_agency(zf: zipfile.ZipFile, agency_terms):
+    agencies = _read_csv(zf, "agency.txt")
+    agencies["__n"] = agencies["agency_name"].astype(str).str.lower()
+    mask = pd.Series(False, index=agencies.index)
+    for t in agency_terms:
+        mask |= agencies["__n"].str.contains(t, na=False)
+    keep_agency_ids = agencies.loc[mask, "agency_id"].astype(str).unique().tolist()
+    return keep_agency_ids, agencies
 
-    def rd(name, usecols=None):
-        try:
-            df = pd.read_csv(z.open(name), dtype=str, usecols=usecols,
-                             encoding="latin1", on_bad_lines="skip")
-            for col in df.columns:
-                df[col] = df[col].apply(lambda v: fix_text(v) if isinstance(v, str) else v)
-            return df
-        except KeyError:
-            return pd.DataFrame()
+def _build_df(zbytes: bytes) -> pd.DataFrame:
+    zf = zipfile.ZipFile(io.BytesIO(zbytes))
+    keep_ids, agencies = _subset_by_agency(zf, AGENCY_MATCH)
+    if not keep_ids:
+        # No direct agency_id? Fall back: many BODS feeds still include the operator name inside routes.txt
+        keep_ids = agencies.get("agency_id", pd.Series([], dtype=str)).astype(str).unique().tolist()
 
-    routes = rd("routes.txt", usecols=["route_id","route_type"])
-    trips = rd("trips.txt", usecols=["route_id","trip_id","service_id"])
-    stop_times = rd("stop_times.txt", usecols=["trip_id","arrival_time","departure_time","stop_id","stop_sequence"])
-    stops = rd("stops.txt", usecols=["stop_id","stop_name","stop_lat","stop_lon"])
+    routes = _read_csv(zf, "routes.txt")
+    routes = routes[routes.get("agency_id","").astype(str).isin(keep_ids) | routes.get("agency_id").isna()]
 
-    if routes.empty or trips.empty or stop_times.empty or stops.empty:
-        return pd.DataFrame()
+    trips = _read_csv(zf, "trips.txt")
+    trips = trips[trips["route_id"].astype(str).isin(routes["route_id"].astype(str))]
+    stop_times = _read_csv(zf, "stop_times.txt")
+    stops = _read_csv(zf, "stops.txt")
+    cal = None
+    if "calendar.txt" in zf.namelist():
+        cal = _read_csv(zf, "calendar.txt")
 
-    routes = routes[routes["route_type"].astype(str) == "3"]
-    trips = trips.merge(routes, on="route_id", how="inner")
+    # compute per-trip first/last + duration
+    stop_times["stop_sequence"] = pd.to_numeric(stop_times["stop_sequence"], errors="coerce")
+    stop_times = stop_times.dropna(subset=["stop_sequence"])
+    st_sorted = stop_times.sort_values(["trip_id","stop_sequence"])
+    firsts = st_sorted.groupby("trip_id").first().reset_index()
+    lasts  = st_sorted.groupby("trip_id").last().reset_index()
 
-    stop_times["stop_sequence"] = pd.to_numeric(stop_times["stop_sequence"], errors="coerce").fillna(0).astype(int)
-    stop_times = stop_times.sort_values(["trip_id", "stop_sequence"])
-    first = stop_times.groupby("trip_id").first().reset_index()[["trip_id","departure_time","stop_id"]]
-    last = stop_times.groupby("trip_id").last().reset_index()[["trip_id","arrival_time","stop_id"]]
-    first.columns = ["trip_id","t0","origin_stop"]
-    last.columns = ["trip_id","t1","dest_stop"]
+    def t2s(x):
+        try: return _parse_time_to_sec(str(x))
+        except: return None
 
-    merged = trips.merge(first, on="trip_id").merge(last, on="trip_id")
-    merged = merged.merge(stops.rename(columns={"stop_id":"origin_stop","stop_name":"origin_station",
-                                                "stop_lat":"origin_lat","stop_lon":"origin_lon"}), on="origin_stop", how="left")
-    merged = merged.merge(stops.rename(columns={"stop_id":"dest_stop","stop_name":"destination_station",
-                                                "stop_lat":"dest_lat","stop_lon":"dest_lon"}), on="dest_stop", how="left")
+    firsts["dep_s"] = firsts["departure_time"].map(t2s)
+    lasts["arr_s"]  = lasts["arrival_time"].map(t2s)
 
-    merged["dur_sec"] = merged.apply(
-        lambda r: (_parse_time_to_sec(r["t1"]) - _parse_time_to_sec(r["t0"]))
-        if (_parse_time_to_sec(r["t1"]) and _parse_time_to_sec(r["t0"])) else None,
-        axis=1
+    trip = firsts[["trip_id","stop_id","dep_s"]].merge(
+        lasts[["trip_id","stop_id","arr_s"]],
+        on="trip_id", suffixes=("_o","_d")
     )
-    merged = merged[(merged["dur_sec"].notna()) & (merged["dur_sec"] > 0) & (merged["dur_sec"] < 48*3600)]
+    trip = trip.merge(trips[["trip_id","service_id","route_id"]], on="trip_id", how="left")
+    trip["duration_s"] = (trip["arr_s"] - trip["dep_s"]).clip(lower=0)
 
-    merged["origin_city"] = merged["origin_station"].apply(_extract_city)
-    merged["destination_city"] = merged["destination_station"].apply(_extract_city)
-    merged["origin_country"] = merged.apply(lambda r: _infer_country(r["origin_lat"], r["origin_lon"]), axis=1)
-    merged["destination_country"] = merged.apply(lambda r: _infer_country(r["dest_lat"], r["dest_lon"]), axis=1)
+    stops_min = stops[["stop_id","stop_name","stop_lat","stop_lon"]].copy()
+    o = trip.merge(stops_min, left_on="stop_id_o", right_on="stop_id", how="left")
+    o = o.merge(stops_min, left_on="stop_id_d", right_on="stop_id", how="left", suffixes=("_o","_d"))
 
-    freq = merged.groupby(["origin_city","destination_city"]).size().reset_index(name="trip_count")
-    def freq_bucket(x):
-        if x <= 5: return "Very Low"
-        elif x <= 15: return "Low"
-        elif x <= 25: return "Average"
-        elif x <= 35: return "High"
-        else: return "Very High"
-    freq["frequency_bucket"] = freq["trip_count"].apply(freq_bucket)
-    merged = merged.merge(freq, on=["origin_city","destination_city"], how="left")
+    o["origin_station"]      = o["stop_name_o"].astype(str)
+    o["destination_station"] = o["stop_name_d"].astype(str)
+    o["origin_city"]         = o["origin_station"].map(_extract_city)
+    o["destination_city"]    = o["destination_station"].map(_extract_city)
+    o["origin_country"]      = _infer_country(o["stop_lat_o"], o["stop_lon_o"])
+    o["destination_country"] = _infer_country(o["stop_lat_d"], o["stop_lon_d"])
 
-    merged["duration"] = merged["dur_sec"].apply(_sec_to_hhmm)
-    merged["operator_name"] = feed_label
-    merged["transport_type"] = "bus"
+    # frequency ~ trips per weekday
+    if cal is not None and "service_id" in cal.columns and "monday" in cal.columns:
+        cal_use = cal[["service_id","monday","tuesday","wednesday","thursday","friday","saturday","sunday"]].copy()
+        cal_use.iloc[:,1:] = cal_use.iloc[:,1:].apply(pd.to_numeric, errors="coerce").fillna(0).astype(int)
+        o = o.merge(cal_use, on="service_id", how="left")
+        o["runs_any_weekday"] = o[["monday","tuesday","wednesday","thursday","friday"]].max(axis=1).fillna(1)
+        o["freq_daily"] = 1
+    else:
+        o["freq_daily"] = 1
 
-    cols = [
-        "origin_city","origin_country","origin_station",
-        "destination_city","destination_country","destination_station",
-        "operator_name","duration","trip_count","frequency_bucket"
-    ]
-    df = merged[cols].drop_duplicates(subset=["origin_city","destination_city"])
-    return df
+    grp = o.groupby([
+        "origin_station","destination_station",
+        "origin_city","destination_city",
+        "origin_country","destination_country"
+    ], dropna=False)
 
-def fetch_routes():
-    FEED_URL = "https://..."   # replace below per company
-    LABEL = "Operator Name"
-    print(f"Fetching {LABEL}...")
-    try:
-        content = _get_with_retries(FEED_URL)
-        df = _parse_gtfs_zip(content, LABEL)
-        print(f"  -> {len(df)} routes from {LABEL}")
-        return df
-    except Exception as e:
-        print(f"Failed {LABEL}: {e}")
-        return pd.DataFrame(columns=[
-            "origin_city","origin_country","origin_station",
-            "destination_city","destination_country","destination_station",
-            "operator_name","duration","trip_count","frequency_bucket"
-        ])
+    agg = grp.agg(duration_s=("duration_s","mean"), trips_day=("freq_daily","sum")).reset_index()
+
+    def lab(n):
+        n = int(n or 0)
+        if n <= 5: return "Very Low (0-5)"
+        if n <=15: return "Low (6-15)"
+        if n <=25: return "Average (16-25)"
+        if n <=35: return "High (26-35)"
+        return "Very High (36+)"
+
+    agg["duration"] = agg["duration_s"].fillna(0).map(lambda s: _sec_to_hhmm(int(round(s))))
+    agg["frequency_daily"] = agg["trips_day"].fillna(0).astype(int)
+    agg["frequency_label"] = agg["frequency_daily"].map(lab)
+
+    out = agg[[
+        "duration","frequency_daily","frequency_label",
+        "origin_station","destination_station",
+        "origin_city","destination_city",
+        "origin_country","destination_country"
+    ]].copy()
+    out.insert(0, "operator_name", OPERATOR_NAME)
+    out.insert(0, "transport_type", "bus")
+    return out
+
+def fetch_routes() -> pd.DataFrame:
+    print("Fetching National Express from BODS GTFS ALL…")
+    z = _get_with_retries(BODS_GTFS_ALL)
+    return _build_df(z)
