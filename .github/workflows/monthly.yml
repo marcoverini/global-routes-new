@@ -1,4 +1,4 @@
- name: Global bus data dump
+name: Global bus data dump
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ✅ NEW STEP: verify vendor CSV exists before running Python
+      # ✅ Sanity check to confirm vendor CSV exists
       - name: Sanity check vendor CSV
         run: |
           echo "PWD: $(pwd)"
