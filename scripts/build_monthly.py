@@ -1,25 +1,20 @@
 import os
 import pandas as pd
 
-# --- Import your GTFS/JSON connectors (keep the ones you already have) ---
+# --- Import your connectors (keep as-is) ---
 from connectors import (
     bus_flixbus,
     bus_nationalexpress,
     bus_irishcitylink,
-    # optional: these may return empty for now; harmless to keep
     bus_alsa,
     bus_avanza,
     bus_blablabus,
-    # NOTE: we are NOT calling the Megabus connector here anymore,
-    # because we’ll ingest a vendor CSV instead (see load_vendor_megabus()).
 )
 
-# Optional helpers (only if you want fallback city/country inference later)
+# Optional helpers
 try:
-    from connectors.bus_flixbus import _extract_city, _infer_country, _sec_to_hhmm  # noqa
+    from connectors.bus_flixbus import _sec_to_hhmm  # for potential minutes->HH:MM conversion
 except Exception:
-    _extract_city = None
-    _infer_country = None
     _sec_to_hhmm = None
 
 
@@ -32,6 +27,20 @@ def _bucket(n: int) -> str:
     return "Very High (36+)"
 
 
+def _read_csv_robust(path: str) -> pd.DataFrame:
+    """Robust CSV reader: handles BOM + comma/semicolon/tab separators."""
+    # Try common encodings
+    for enc in ("utf-8", "utf-8-sig", "latin-1"):
+        try:
+            # sep=None lets pandas sniff delimiters (comma, semicolon, tab)
+            df = pd.read_csv(path, dtype=str, low_memory=False, encoding=enc, sep=None, engine="python")
+            return df
+        except Exception:
+            continue
+    # Last resort
+    return pd.read_csv(path, dtype=str, low_memory=False, encoding="utf-8", errors="ignore")
+
+
 def load_vendor_megabus(local_path="data/vendor/megabus.csv") -> pd.DataFrame:
     """Load a pre-generated Megabus CSV (no API calls). If not present, return empty DF."""
     cols = [
@@ -40,13 +49,16 @@ def load_vendor_megabus(local_path="data/vendor/megabus.csv") -> pd.DataFrame:
         "origin_country","destination_country"
     ]
     if not os.path.exists(local_path):
-        print(f"Megabus vendor CSV not found at {local_path} — skipping.")
+        print(f"⚠️ Megabus vendor CSV not found at {local_path} — skipping.")
         return pd.DataFrame(columns=cols)
 
-    df = pd.read_csv(local_path, dtype=str, low_memory=False)
+    try:
+        df = _read_csv_robust(local_path)
+    except Exception as e:
+        print(f"❌ Failed reading vendor CSV: {e}")
+        return pd.DataFrame(columns=cols)
 
-    # Normalize columns
-    # Allow some flexibility if vendor file uses different names
+    # Flexible column support
     rename_map = {
         "freq_daily": "frequency_daily",
         "frequency": "frequency_daily",
@@ -57,7 +69,7 @@ def load_vendor_megabus(local_path="data/vendor/megabus.csv") -> pd.DataFrame:
         "to_city": "destination_city",
         "from_country": "origin_country",
         "to_country": "destination_country",
-        "duration_minutes": "duration"  # will convert below if numeric
+        "duration_minutes": "duration",  # convert below if numeric
     }
     for k, v in rename_map.items():
         if k in df.columns and v not in df.columns:
@@ -68,27 +80,26 @@ def load_vendor_megabus(local_path="data/vendor/megabus.csv") -> pd.DataFrame:
         if c not in df.columns:
             df[c] = None
 
+    # Normalize types/values
+    df["transport_type"] = "bus"
+    df["operator_name"]  = df["operator_name"].fillna("Megabus")
+
     # If duration is numeric minutes, convert to HH:MM
     if df["duration"].astype(str).str.fullmatch(r"\d+").any() and _sec_to_hhmm is not None:
         mins = pd.to_numeric(df["duration"], errors="coerce")
         df["duration"] = mins.fillna(0).astype(int).map(lambda m: _sec_to_hhmm(m * 60))
-    # Otherwise assume duration is already "HH:MM"
-
-    # Fill defaults
-    df["transport_type"] = "bus"
-    df["operator_name"] = df["operator_name"].fillna("Megabus")
 
     # Frequency label if missing
-    if df["frequency_label"].isna().any():
+    if "frequency_daily" in df.columns:
         df["frequency_daily"] = pd.to_numeric(df["frequency_daily"], errors="coerce").fillna(0).astype(int)
+    if df["frequency_label"].isna().any():
         df.loc[df["frequency_label"].isna(), "frequency_label"] = df.loc[df["frequency_label"].isna(), "frequency_daily"].map(_bucket)
 
-    # A little cleanup (strip spaces)
+    # Strip whitespace
     for c in ["origin_station","destination_station","origin_city","destination_city","origin_country","destination_country"]:
         df[c] = df[c].astype(str).str.strip()
 
-    # Keep schema & de-dup
-    out = df[cols].drop_duplicates()
+    out = df[cols].dropna(subset=["origin_station","destination_station"]).drop_duplicates()
     print(f"✅ Megabus vendor rows loaded: {len(out):,}")
     return out
 
@@ -101,12 +112,12 @@ def main(out_dir="data/outputs"):
     # 1) Vendor Megabus (no API calls; just a CSV if present)
     frames.append(load_vendor_megabus("data/vendor/megabus.csv"))
 
-    # 2) Live connectors that work well on GitHub Actions
+    # 2) Live connectors that work on Actions
     connectors = [
         ("FlixBus", bus_flixbus),
         ("National Express", bus_nationalexpress),
         ("Irish Citylink", bus_irishcitylink),
-        # Optional: these may return empty for now
+        # Optional (may return empty right now):
         ("ALSA", bus_alsa),
         ("Avanza", bus_avanza),
         ("BlaBlaBus", bus_blablabus),
@@ -117,29 +128,31 @@ def main(out_dir="data/outputs"):
             print(f"\n▶ Fetching {name} routes...")
             df = module.fetch_routes()
             if df is not None and not df.empty:
-                print(f"✅ {name}: {len(df):,} routes fetched")
+                print(f"✅ {name}: {len(df):,} rows")
                 frames.append(df)
             else:
-                print(f"⚠️ {name}: no routes returned")
+                print(f"⚠️ {name}: no rows")
         except Exception as e:
-            print(f"❌ Error fetching {name}: {e}")
+            print(f"❌ {name} failed: {e}")
 
-    if not any((f is not None and len(f) > 0) for f in frames):
+    frames = [f for f in frames if f is not None and not f.empty]
+    if not frames:
         print("❌ No data fetched — aborting write.")
         return
 
-    print("\n🧩 Merging all operators into one dataset...")
-    combined = pd.concat([f for f in frames if f is not None and not f.empty], ignore_index=True).drop_duplicates()
+    print("\n🧩 Merging all sources…")
+    combined = pd.concat(frames, ignore_index=True).drop_duplicates()
 
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "world_bus.csv")
     combined.to_csv(out_path, index=False, encoding="utf-8")
 
-    print(f"\n✅ Saved {len(combined):,} total routes to {out_path}")
+    print(f"\n✅ Saved {len(combined):,} total rows to {out_path}")
     print("Included sources:")
     print("   • Vendor: Megabus (CSV)")
     for name, _ in connectors:
         print(f"   • {name}")
+
 
 if __name__ == "__main__":
     main()
