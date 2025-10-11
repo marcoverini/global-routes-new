@@ -1,18 +1,29 @@
-name: Global Bus Data Dump
+ name: Global bus data dump
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   schedule:
-    - cron: "0 6 1 * *"   # runs monthly at 06:00 UTC on the 1st of every month
-permissions:
-  contents: write
+    - cron: "0 0 1 * *"  # runs on the 1st of every month
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      # ✅ NEW STEP: verify vendor CSV exists before running Python
+      - name: Sanity check vendor CSV
+        run: |
+          echo "PWD: $(pwd)"
+          ls -lah
+          echo "---"
+          ls -lah data || true
+          echo "---"
+          ls -lah data/vendor || true
+          echo "--- head of vendor csv ---"
+          head -n 10 data/vendor/megabus.csv || true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,25 +32,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install -U pip
-          pip install pandas requests python-dateutil ftfy
+          python -m pip install --upgrade pip
+          pip install pandas requests
 
       - name: Build monthly dump
         run: |
           mkdir -p data/outputs
           PYTHONPATH=$GITHUB_WORKSPACE python -m scripts.build_monthly --out data/outputs
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: world-bus-routes
-          path: data/outputs/*.csv
-
-      # 👇 This is the *new* part that pushes the file into your repo
       - name: Commit CSV to repo
         run: |
           git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.email "github-actions@github.com"
           git add data/outputs/world_bus.csv
           git commit -m "Monthly bus routes update [skip ci]" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
