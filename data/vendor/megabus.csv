@@ -10,11 +10,27 @@ bus,Megabus,07:00,6,Low (6-15),London Victoria Coach Station,Newcastle upon Tyne
 bus,Megabus,02:50,11,Low (6-15),Manchester Shudehill,Glasgow Buchanan Bus Station,Manchester,Glasgow,United Kingdom,United Kingdom
 bus,Megabus,02:40,13,Low (6-15),Manchester Shudehill,Birmingham Digbeth Coach Station,Manchester,Birmingham,United Kingdom,United Kingdom
 bus,Megabus,04:15,9,Low (6-15),Bristol Bond Street,Manchester Shudehill,Bristol,Manchester,United Kingdom,United Kingdom
-bus,Megabus,01:40,10,Low (6-15),Cardiff Sophia Gardens,Bristol Bond Street,Cardiff,Bristol,United Kingdom,United Kingdom
-bus,Megabus,03:50,8,Low (6-15),Birmingham Digbeth Coach Station,Leeds Dyer Street,Birmingham,Leeds,United Kingdom,United Kingdom
-bus,Megabus,04:10,7,Low (6-15),Leeds Dyer Street,Glasgow Buchanan Bus Station,Leeds,Glasgow,United Kingdom,United Kingdom
+bus,Megabus,03:10,6,Low (6-15),London Victoria Coach Station,Cambridge Parkside,London,Cambridge,United Kingdom,United Kingdom
 bus,Megabus,08:00,6,Low (6-15),London Victoria Coach Station,Amsterdam Sloterdijk,London,Amsterdam,United Kingdom,Netherlands
 bus,Megabus,09:30,4,Very Low (0-5),London Victoria Coach Station,Paris Bercy Seine,London,Paris,United Kingdom,France
 bus,Megabus,08:15,3,Very Low (0-5),London Victoria Coach Station,Brussels Gare du Nord,London,Brussels,United Kingdom,Belgium
 bus,Megabus,09:45,2,Very Low (0-5),London Victoria Coach Station,Rotterdam Conradstraat,London,Rotterdam,United Kingdom,Netherlands
 bus,Megabus,10:30,2,Very Low (0-5),London Victoria Coach Station,Cologne Airport,London,Cologne,United Kingdom,Germany
+bus,Megabus,06:15,10,Low (6-15),Paris Bercy Seine,Amsterdam Sloterdijk,Paris,Amsterdam,France,Netherlands
+bus,Megabus,07:00,8,Low (6-15),Paris Bercy Seine,Brussels Gare du Nord,Paris,Brussels,France,Belgium
+bus,Megabus,09:15,6,Low (6-15),Paris Bercy Seine,Cologne Airport,Paris,Cologne,France,Germany
+bus,Megabus,10:45,4,Very Low (0-5),Paris Bercy Seine,Frankfurt Central Station,Paris,Frankfurt,France,Germany
+bus,Megabus,08:30,6,Low (6-15),Brussels Gare du Nord,Amsterdam Sloterdijk,Brussels,Amsterdam,Belgium,Netherlands
+bus,Megabus,07:20,7,Low (6-15),Amsterdam Sloterdijk,Hamburg ZOB,Amsterdam,Hamburg,Netherlands,Germany
+bus,Megabus,09:30,5,Very Low (0-5),Amsterdam Sloterdijk,Berlin Central Bus Station,Amsterdam,Berlin,Netherlands,Germany
+bus,Megabus,05:40,6,Low (6-15),Cologne Airport,Berlin Central Bus Station,Cologne,Berlin,Germany,Germany
+bus,Megabus,08:00,5,Very Low (0-5),Frankfurt Central Station,Milan Lampugnano,Frankfurt,Milan,Germany,Italy
+bus,Megabus,08:15,4,Very Low (0-5),Milan Lampugnano,Venice Mestre Bus Station,Milan,Venice,Italy,Italy
+bus,Megabus,09:50,3,Very Low (0-5),Venice Mestre Bus Station,Rome Tiburtina,Venice,Rome,Italy,Italy
+bus,Megabus,08:30,3,Very Low (0-5),Rome Tiburtina,Naples Metropark Central, Rome,Naples,Italy,Italy
+bus,Megabus,08:00,4,Very Low (0-5),Barcelona Nord Bus Station,Lyon Perrache,Barcelona,Lyon,Spain,France
+bus,Megabus,07:45,5,Very Low (0-5),Lyon Perrache,Paris Bercy Seine,Lyon,Paris,France,France
+bus,Megabus,09:30,3,Very Low (0-5),Barcelona Nord Bus Station,Paris Bercy Seine,Barcelona,Paris,Spain,France
+bus,Megabus,08:30,3,Very Low (0-5),Madrid South Bus Station,Paris Bercy Seine,Madrid,Paris,Spain,France
+bus,Megabus,07:15,4,Very Low (0-5),Barcelona Nord Bus Station,Milan Lampugnano,Barcelona,Milan,Spain,Italy
+bus,Megabus,06:30,4,Very Low (0-5),Madrid South Bus Station,Barcelona Nord Bus Station,Madrid,Barcelona,Spain,Spain
