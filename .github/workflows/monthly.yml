@@ -49,3 +49,9 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Upload artifact for download
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-bus-routes
+          path: data/outputs/world_bus.csv
