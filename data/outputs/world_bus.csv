@@ -4213,3 +4213,22 @@ Toronto,Canada,Union Station Bus Terminal,Montreal,Canada,Gare d'autocars de Mon
 Montreal,Canada,Gare d'autocars de Montréal,Toronto,Canada,Union Station Bus Terminal,Megabus Canada,06:00,,,bus,8.0,Low (6-15)
 Toronto,Canada,Union Station Bus Terminal,Kingston,Canada,Kingston Bus Terminal,Megabus Canada,02:45,,,bus,8.0,Low (6-15)
 Montreal,Canada,Gare d'autocars de Montréal,Kingston,Canada,Kingston Bus Terminal,Megabus Canada,03:00,,,bus,6.0,Low (6-15)
+# --- UK (new) ---,,,,,,,,,,,,
+Plymouth,United Kingdom,Coach Station,Bristol,United Kingdom,Bond Street,Megabus UK,03:00,,,bus,6.0,Low (6-15)
+Bristol,United Kingdom,Bond Street,Plymouth,United Kingdom,Coach Station,Megabus UK,03:00,,,bus,6.0,Low (6-15)
+Dundee,United Kingdom,Seagate Bus Station,Aberdeen,United Kingdom,Union Square Bus Station,Megabus UK,01:30,,,bus,16.0,Average (16-25)
+Aberdeen,United Kingdom,Union Square Bus Station,Dundee,United Kingdom,Seagate Bus Station,Megabus UK,01:30,,,bus,16.0,Average (16-25)
+Stirling,United Kingdom,Bus Station,Dunblane,United Kingdom,Station,Megabus UK,00:20,,,bus,12.0,Low (6-15)
+Dunblane,United Kingdom,Station,Stirling,United Kingdom,Bus Station,Megabus UK,00:20,,,bus,12.0,Low (6-15)
+Perth,United Kingdom,Bus Station,Inverness,United Kingdom,Inverness Bus Station,Megabus UK,02:20,,,bus,16.0,Average (16-25)
+Inverness,United Kingdom,Inverness Bus Station,Perth,United Kingdom,Bus Station,Megabus UK,02:20,,,bus,16.0,Average (16-25)
+Glasgow,United Kingdom,Buchanan Bus Station,Stirling,United Kingdom,Bus Station,Megabus UK,00:55,,,bus,16.0,Average (16-25)
+Stirling,United Kingdom,Bus Station,Glasgow,United Kingdom,Buchanan Bus Station,Megabus UK,00:55,,,bus,16.0,Average (16-25)
+Perth,United Kingdom,Bus Station,Dundee,United Kingdom,Seagate Bus Station,Megabus UK,00:40,,,bus,16.0,Average (16-25)
+Dundee,United Kingdom,Seagate Bus Station,Perth,United Kingdom,Bus Station,Megabus UK,00:40,,,bus,16.0,Average (16-25)
+# --- USA (additional) ---,,,,,,,,,,,,
+Philadelphia,United States,30th Street Station,Washington DC,United States,Union Station,Megabus USA,02:45,,,bus,10.0,Low (6-15)
+Washington DC,United States,Union Station,Philadelphia,United States,30th Street Station,Megabus USA,02:45,,,bus,10.0,Low (6-15)
+# --- Canada (missing reverses) ---,,,,,,,,,,,,
+Kingston,Canada,Kingston Bus Terminal,Toronto,Canada,Union Station Bus Terminal,Megabus Canada,02:45,,,bus,8.0,Low (6-15)
+Kingston,Canada,Kingston Bus Terminal,Montreal,Canada,Gare d'autocars de Montréal,Megabus Canada,03:00,,,bus,6.0,Low (6-15)
