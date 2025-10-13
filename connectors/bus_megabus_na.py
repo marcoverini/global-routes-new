@@ -1,10 +1,12 @@
 # connectors/bus_megabus_na.py
-import requests, time
-import pandas as pd
+import zipfile, io, os, requests, pandas as pd
+from ftfy import fix_text
 
-BASES = ["https://us.megabus.com", "https://ca.megabus.com"]
-LOC_SUFFIX = "/journey-planner/api/locations"
-JNY_SUFFIX = "/journey-planner/api/journeys"
+# GTFS feed URLs (hosted by MobilityData)
+GTFS_FEEDS = {
+    "Megabus US": "https://storage.googleapis.com/mdb-csv/gtfs/megabus-us.zip",
+    "Megabus Canada": "https://storage.googleapis.com/mdb-csv/gtfs/megabus-canada.zip",
+}
 
 def _hhmm_from_minutes(m):
     try:
@@ -14,93 +16,90 @@ def _hhmm_from_minutes(m):
     except Exception:
         return None
 
-def _fetch_locations():
-    frames = []
-    for base in BASES:
-        try:
-            r = requests.get(base + LOC_SUFFIX, timeout=60)
-            print(f"{'US' if 'us.' in base else 'CA'} Megabus locations status:", r.status_code)
-            print("Preview:", r.text[:200])
-            r.raise_for_status()
-
-            if "application/json" in r.headers.get("content-type", ""):
-                df = pd.DataFrame(r.json())
-                if not df.empty:
-                    df["source_base"] = base
-                    frames.append(df)
-            else:
-                print(f"⚠️ {base} did not return JSON.")
-        except Exception as e:
-            print(f"❌ Error fetching {base} locations:", e)
-            continue
-    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
-
 def fetch_routes():
-    print("Fetching Megabus North America routes (live API)…")
-    loc_df = _fetch_locations()
-    if loc_df.empty:
-        print("⚠️ No NA locations returned")
+    print("Fetching Megabus North America GTFS feeds (US + Canada)...")
+    frames = []
+
+    for name, url in GTFS_FEEDS.items():
+        print(f"→ Downloading {name} feed from {url}")
+        try:
+            r = requests.get(url, timeout=90)
+            r.raise_for_status()
+        except Exception as e:
+            print(f"❌ Failed to fetch {name}: {e}")
+            continue
+
+        with zipfile.ZipFile(io.BytesIO(r.content)) as z:
+            if "stops.txt" not in z.namelist() or "trips.txt" not in z.namelist() or "stop_times.txt" not in z.namelist():
+                print(f"⚠️ Missing GTFS tables in {name}")
+                continue
+
+            stops = pd.read_csv(z.open("stops.txt"))
+            trips = pd.read_csv(z.open("trips.txt"))
+            stop_times = pd.read_csv(z.open("stop_times.txt"))
+
+        # Fix text encoding issues
+        stops["stop_name"] = stops["stop_name"].astype(str).map(fix_text)
+
+        # Merge minimal fields
+        first_last = stop_times.groupby("trip_id").agg(
+            first_stop=("stop_id", "first"),
+            last_stop=("stop_id", "last"),
+            duration=("arrival_time", lambda x: len(x))
+        ).reset_index()
+
+        df = first_last.merge(trips[["trip_id", "route_id"]], on="trip_id", how="left")
+        df = df.merge(
+            stops[["stop_id", "stop_name", "stop_lat", "stop_lon"]],
+            left_on="first_stop", right_on="stop_id", how="left"
+        ).rename(columns={
+            "stop_name": "origin_station",
+            "stop_lat": "origin_lat",
+            "stop_lon": "origin_lon"
+        }).drop(columns=["stop_id"])
+
+        df = df.merge(
+            stops[["stop_id", "stop_name", "stop_lat", "stop_lon"]],
+            left_on="last_stop", right_on="stop_id", how="left"
+        ).rename(columns={
+            "stop_name": "destination_station",
+            "stop_lat": "destination_lat",
+            "stop_lon": "destination_lon"
+        }).drop(columns=["stop_id"])
+
+        # Derive city names (basic cleanup)
+        def city_from_station(s):
+            if not isinstance(s, str):
+                return None
+            s = s.replace("Station", "").replace("Stop", "").replace("Megabus Stop", "")
+            s = s.replace("FlixBus Stop", "").split("(")[0].split("-")[0]
+            return s.strip()
+
+        df["origin_city"] = df["origin_station"].map(city_from_station)
+        df["destination_city"] = df["destination_station"].map(city_from_station)
+        df["origin_country"] = "United States" if "US" in name else "Canada"
+        df["destination_country"] = "United States" if "US" in name else "Canada"
+
+        # Add metadata
+        df["operator_name"] = name
+        df["transport_type"] = "bus"
+        df["duration"] = df["duration"].map(_hhmm_from_minutes)
+        df["frequency_daily"] = 1
+        df["frequency_label"] = "Unknown"
+
+        frames.append(df[
+            ["origin_city","origin_country","origin_station",
+             "destination_city","destination_country","destination_station",
+             "operator_name","duration","frequency_daily","frequency_label","transport_type"]
+        ])
+
+        print(f"✅ {name}: {len(df)} routes extracted")
+
+    if not frames:
+        print("⚠️ No Megabus North America feeds loaded")
         return pd.DataFrame()
 
-    # Normalize names → city names
-    def city_from(name: str):
-        if not isinstance(name, str):
-            return None
-        x = name.replace("Coach Station", "").replace("Bus Station", "").strip()
-        x = x.split("(")[0].strip()
-        return x
-
-    loc_df["city"] = loc_df["name"].map(city_from)
-    loc_df["country"] = loc_df["country"].fillna(
-        loc_df["source_base"].map(lambda b: "United States" if "us." in b else "Canada")
-    )
-
-    # modest sampling to avoid bans
-    ids = loc_df["id"].tolist()
-    ids = ids[:80]
-
-    results = []
-    for i, o in enumerate(ids):
-        for d in ids[i+1:]:
-            orec = loc_df.loc[loc_df["id"] == o].iloc[0]
-            drec = loc_df.loc[loc_df["id"] == d].iloc[0]
-            base = orec["source_base"]
-
-            payload = {
-                "originId": int(o),
-                "destinationId": int(d),
-                "departureDate": pd.Timestamp.today().strftime("%Y-%m-%d")
-            }
-            try:
-                rr = requests.post(base + JNY_SUFFIX, json=payload, timeout=35)
-                if rr.status_code != 200:
-                    continue
-                data = rr.json()
-                journeys = data.get("journeys") or []
-                if not journeys:
-                    continue
-                j0 = journeys[0]
-                dur_min = j0.get("durationInMinutes")
-                if dur_min is None:
-                    continue
-
-                results.append({
-                    "transport_type": "bus",
-                    "operator_name": "Megabus North America",
-                    "duration": _hhmm_from_minutes(dur_min),
-                    "frequency_daily": max(1, len(journeys)),
-                    "frequency_label": None,
-                    "origin_station": orec["name"],
-                    "destination_station": drec["name"],
-                    "origin_city": orec["city"],
-                    "destination_city": drec["city"],
-                    "origin_country": orec["country"],
-                    "destination_country": drec["country"],
-                })
-            except Exception as e:
-                print(f"Error fetching journey {o}->{d} from {base}:", e)
-            time.sleep(0.4)
-
-    df = pd.DataFrame(results)
-    print(f"✅ Megabus North America: {len(df)} live routes")
-    return df
+    all_df = pd.concat(frames, ignore_index=True)
+    print(f"✅ Megabus North America combined: {len(all_df)} routes total")
+    return all_df
+    
