@@ -1,5 +1,6 @@
 # scripts/build_monthly.py
 import os
+import glob
 import pandas as pd
 from connectors import (
     bus_flixbus,
@@ -7,17 +8,16 @@ from connectors import (
     bus_irishcitylink
 )
 
-# Create output directory if not exists
+# Ensure output directory exists
 os.makedirs("data/outputs", exist_ok=True)
 
 def main(out_dir="data/outputs"):
-    print("🚌 Building global bus dataset...")
+    print("🚌 Building global bus dataset...\n")
 
-    # List to collect all dataframes
     frames = []
 
     # --- 1. FlixBus ---
-    print("\n▶ Fetching FlixBus routes…")
+    print("▶ Fetching FlixBus routes…")
     try:
         df_flix = bus_flixbus.fetch_routes()
         print(f"✅ FlixBus: {len(df_flix)} rows")
@@ -43,34 +43,37 @@ def main(out_dir="data/outputs"):
     except Exception as e:
         print(f"❌ Irish Citylink failed: {e}")
 
-    # --- 4. Vendor (static) datasets like Megabus ---
-    print("\n▶ Merging vendor datasets…")
+    # --- 4. Vendor datasets (static .csv files like ALSA, Megabus, etc.) ---
+    print("\n▶ Including vendor datasets…")
     vendor_dir = os.path.join("data", "vendor")
-    if os.path.exists(vendor_dir):
-        for f in os.listdir(vendor_dir):
-            if f.endswith(".csv"):
-                path = os.path.join(vendor_dir, f)
-                print(f"   → Including vendor dataset: {f}")
+
+    if not os.path.exists(vendor_dir):
+        print("⚠️ No vendor directory found, skipping.")
+    else:
+        vendor_files = glob.glob(os.path.join(vendor_dir, "*.csv"))
+        if not vendor_files:
+            print("⚠️ No vendor CSV files found in data/vendor/")
+        else:
+            for vf in vendor_files:
                 try:
-                    vdf = pd.read_csv(path)
+                    vdf = pd.read_csv(vf)
+                    print(f"   → Added vendor dataset: {os.path.basename(vf)} ({len(vdf)} rows)")
                     frames.append(vdf)
                 except Exception as e:
-                    print(f"   ⚠️ Failed to load {f}: {e}")
-    else:
-        print("⚠️ No vendor directory found")
+                    print(f"   ⚠️ Failed to load {vf}: {e}")
 
-    # --- Combine all routes ---
+    # --- 5. Combine everything ---
     if frames:
         df_all = pd.concat(frames, ignore_index=True)
-        print(f"\n✅ Total combined routes: {len(df_all)}")
+        print(f"\n✅ Total combined routes: {len(df_all)} rows")
     else:
-        print("⚠️ No data to combine.")
+        print("⚠️ No data combined, output will be empty.")
         df_all = pd.DataFrame()
 
-    # --- Save final dataset ---
+    # --- 6. Save final output ---
     out_path = os.path.join(out_dir, "world_bus.csv")
-    df_all.to_csv(out_path, index=False)
-    print(f"\n💾 Saved to {out_path}")
+    df_all.to_csv(out_path, index=False, encoding="utf-8")
+    print(f"💾 Saved combined dataset to {out_path}")
 
 if __name__ == "__main__":
     main("data/outputs")
