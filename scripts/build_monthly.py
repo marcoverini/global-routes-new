@@ -1,65 +1,76 @@
+# scripts/build_monthly.py
 import os
 import pandas as pd
-
 from connectors import (
     bus_flixbus,
     bus_nationalexpress,
-    bus_irishcitylink,
-    bus_megabus_uk,
-    bus_megabus_na,
+    bus_irishcitylink
 )
 
-def _bucket(n: int) -> str:
-    try:
-        n = int(n or 0)
-    except Exception:
-        n = 0
-    if n <= 5:  return "Very Low (0-5)"
-    if n <= 15: return "Low (6-15)"
-    if n <= 25: return "Average (16-25)"
-    if n <= 35: return "High (26-35)"
-    return "Very High (36+)"
+# Create output directory if not exists
+os.makedirs("data/outputs", exist_ok=True)
 
 def main(out_dir="data/outputs"):
     print("🚌 Building global bus dataset...")
-    os.makedirs(out_dir, exist_ok=True)
 
+    # List to collect all dataframes
     frames = []
-    connectors = [
-        ("FlixBus", bus_flixbus),
-        ("National Express", bus_nationalexpress),
-        ("Irish Citylink", bus_irishcitylink),
-        ("Megabus UK", bus_megabus_uk),
-        ("Megabus North America", bus_megabus_na),
-    ]
 
-    for name, module in connectors:
-        try:
-            print(f"\n▶ Fetching {name} routes…")
-            df = module.fetch_routes()
-            if df is None or df.empty:
-                print(f"⚠️ {name}: 0 rows")
-                continue
+    # --- 1. FlixBus ---
+    print("\n▶ Fetching FlixBus routes…")
+    try:
+        df_flix = bus_flixbus.fetch_routes()
+        print(f"✅ FlixBus: {len(df_flix)} rows")
+        frames.append(df_flix)
+    except Exception as e:
+        print(f"❌ FlixBus failed: {e}")
 
-            # fill frequency label if missing
-            if "frequency_label" in df.columns and df["frequency_label"].isna().any():
-                if "frequency_daily" in df.columns:
-                    df["frequency_daily"] = pd.to_numeric(df["frequency_daily"], errors="coerce").fillna(0).astype(int)
-                    df.loc[df["frequency_label"].isna(), "frequency_label"] = df.loc[df["frequency_label"].isna(), "frequency_daily"].map(_bucket)
+    # --- 2. National Express ---
+    print("\n▶ Fetching National Express routes…")
+    try:
+        df_ne = bus_nationalexpress.fetch_routes()
+        print(f"✅ National Express: {len(df_ne)} rows")
+        frames.append(df_ne)
+    except Exception as e:
+        print(f"❌ National Express failed: {e}")
 
-            frames.append(df)
-            print(f"✅ {name}: {len(df)} rows")
-        except Exception as e:
-            print(f"❌ {name} failed: {e}")
+    # --- 3. Irish Citylink ---
+    print("\n▶ Fetching Irish Citylink routes…")
+    try:
+        df_citylink = bus_irishcitylink.fetch_routes()
+        print(f"✅ Irish Citylink: {len(df_citylink)} rows")
+        frames.append(df_citylink)
+    except Exception as e:
+        print(f"❌ Irish Citylink failed: {e}")
 
-    if not frames:
-        print("❌ No data to combine.")
-        return
+    # --- 4. Vendor (static) datasets like Megabus ---
+    print("\n▶ Merging vendor datasets…")
+    vendor_dir = os.path.join("data", "vendor")
+    if os.path.exists(vendor_dir):
+        for f in os.listdir(vendor_dir):
+            if f.endswith(".csv"):
+                path = os.path.join(vendor_dir, f)
+                print(f"   → Including vendor dataset: {f}")
+                try:
+                    vdf = pd.read_csv(path)
+                    frames.append(vdf)
+                except Exception as e:
+                    print(f"   ⚠️ Failed to load {f}: {e}")
+    else:
+        print("⚠️ No vendor directory found")
 
-    combined = pd.concat(frames, ignore_index=True).drop_duplicates()
-    out_fp = os.path.join(out_dir, "world_bus.csv")
-    combined.to_csv(out_fp, index=False, encoding="utf-8")
-    print(f"\n✅ Saved {len(combined):,} rows to {out_fp}")
+    # --- Combine all routes ---
+    if frames:
+        df_all = pd.concat(frames, ignore_index=True)
+        print(f"\n✅ Total combined routes: {len(df_all)}")
+    else:
+        print("⚠️ No data to combine.")
+        df_all = pd.DataFrame()
+
+    # --- Save final dataset ---
+    out_path = os.path.join(out_dir, "world_bus.csv")
+    df_all.to_csv(out_path, index=False)
+    print(f"\n💾 Saved to {out_path}")
 
 if __name__ == "__main__":
-    main()
+    main("data/outputs")
