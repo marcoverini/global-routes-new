@@ -1,1 +1,62 @@
+origin_city	origin_country	origin_station	destination_city	destination_country	destination_station	operator_name	duration	frequency_daily	frequency_label	transport_type
+Sevilla	Spain	Est. Plaza de Armas	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	02:30	14	Low (6-15)	bus
+CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	Sevilla	Spain	Est. Plaza de Armas	ALSA	02:30	14	Low (6-15)	bus
+CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	Granada	Spain	EstaciĂłn de Autobuses de Granada	ALSA	02:45	10	Low (6-15)	bus
+Granada	Spain	EstaciĂłn de Autobuses de Granada	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	02:45	10	Low (6-15)	bus
+CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	02:45	10	Low (6-15)	bus
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	02:45	10	Low (6-15)	bus
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Ronda	Spain	EstaciĂłn de Autobuses de Ronda	ALSA	02:00	8	Low (6-15)	bus
+Ronda	Spain	EstaciĂłn de Autobuses de Ronda	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	02:00	8	Low (6-15)	bus
+Sevilla	Spain	Est. Plaza de Armas	Huelva	Spain	EstaciĂłn de Autobuses de Huelva	ALSA	01:15	12	Average (16-25)	bus
+Huelva	Spain	EstaciĂłn de Autobuses de Huelva	Sevilla	Spain	Est. Plaza de Armas	ALSA	01:15	12	Average (16-25)	bus
+Sevilla	Spain	Est. Plaza de Armas	CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	ALSA	01:45	12	Average (16-25)	bus
+CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	Sevilla	Spain	Est. Plaza de Armas	ALSA	01:45	12	Average (16-25)	bus
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Nerja	Spain	EstaciĂłn de Autobuses de Nerja	ALSA	01:15	16	Average (16-25)	bus
+Nerja	Spain	EstaciĂłn de Autobuses de Nerja	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	01:15	16	Average (16-25)	bus
+Algeciras	Spain	EstaciĂłn de Autobuses de Algeciras	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	02:30	8	Low (6-15)	bus
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Algeciras	Spain	EstaciĂłn de Autobuses de Algeciras	ALSA	02:30	8	Low (6-15)	bus
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	XĂ tiva	Spain	EstaciĂłn de Autobuses de XĂ tiva	ALSA	01:15	10	Low (6-15)	bus
+XĂ tiva	Spain	EstaciĂłn de Autobuses de XĂ tiva	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	01:15	10	Low (6-15)	bus
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Sagunto	Spain	EstaciĂłn de Autobuses de Sagunto	ALSA	00:45	12	Average (16-25)	bus
+Sagunto	Spain	EstaciĂłn de Autobuses de Sagunto	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	00:45	12	Average (16-25)	bus
+Benidorm	Spain	EstaciĂłn de Autobuses de Benidorm	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	01:45	10	Low (6-15)	bus
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Benidorm	Spain	EstaciĂłn de Autobuses de Benidorm	ALSA	01:45	10	Low (6-15)	bus
+Elche	Spain	EstaciĂłn de Autobuses de Elche	Alicante	Spain	EstaciĂłn de Autobuses de Alicante	ALSA	00:35	18	High (26-35)	bus
+Alicante	Spain	EstaciĂłn de Autobuses de Alicante	Elche	Spain	EstaciĂłn de Autobuses de Elche	ALSA	00:35	18	High (26-35)	bus
+Cartagena	Spain	EstaciĂłn de Autobuses de Cartagena	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	00:55	16	Average (16-25)	bus
+Murcia	Spain	EstaciĂłn de Autobuses de Murcia	Cartagena	Spain	EstaciĂłn de Autobuses de Cartagena	ALSA	00:55	16	Average (16-25)	bus
+Santander	Spain	EstaciĂłn de Autobuses de Santander	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses Donostia	ALSA	02:45	8	Low (6-15)	bus
+San SebastiĂˇn	Spain	EstaciĂłn de Autobuses Donostia	Santander	Spain	EstaciĂłn de Autobuses de Santander	ALSA	02:45	8	Low (6-15)	bus
+Bilbao	Spain	Bilbao Intermodal	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses Donostia	ALSA	01:15	20	High (26-35)	bus
+San SebastiĂˇn	Spain	EstaciĂłn de Autobuses Donostia	Bilbao	Spain	Bilbao Intermodal	ALSA	01:15	20	High (26-35)	bus
+Bilbao	Spain	Bilbao Intermodal	Vitoria-Gasteiz	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	ALSA	01:10	16	Average (16-25)	bus
+Vitoria-Gasteiz	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	Bilbao	Spain	Bilbao Intermodal	ALSA	01:10	16	Average (16-25)	bus
+Oviedo	Spain	EstaciĂłn de Autobuses de Oviedo	Llanes	Spain	EstaciĂłn de Autobuses de Llanes	ALSA	01:45	8	Low (6-15)	bus
+Llanes	Spain	EstaciĂłn de Autobuses de Llanes	Oviedo	Spain	EstaciĂłn de Autobuses de Oviedo	ALSA	01:45	8	Low (6-15)	bus
+Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	Madrid	Spain	EstaciĂłn Sur	ALSA	02:30	18	High (26-35)	bus
+Madrid	Spain	EstaciĂłn Sur	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	02:30	18	High (26-35)	bus
+LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	Madrid	Spain	EstaciĂłn Sur	ALSA	04:00	10	Low (6-15)	bus
+Madrid	Spain	EstaciĂłn Sur	LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	ALSA	04:00	10	Low (6-15)	bus
+Burgos	Spain	EstaciĂłn de Autobuses de Burgos	Madrid	Spain	EstaciĂłn Sur	ALSA	02:45	12	Average (16-25)	bus
+Madrid	Spain	EstaciĂłn Sur	Burgos	Spain	EstaciĂłn de Autobuses de Burgos	ALSA	02:45	12	Average (16-25)	bus
+Soria	Spain	EstaciĂłn de Autobuses de Soria	Madrid	Spain	EstaciĂłn Sur	ALSA	02:30	8	Low (6-15)	bus
+Madrid	Spain	EstaciĂłn Sur	Soria	Spain	EstaciĂłn de Autobuses de Soria	ALSA	02:30	8	Low (6-15)	bus
+Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	A CoruĂ±a	Spain	EstaciĂłn de Autobuses de A CoruĂ±a	ALSA	01:05	20	High (26-35)	bus
+A CoruĂ±a	Spain	EstaciĂłn de Autobuses de A CoruĂ±a	Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	ALSA	01:05	20	High (26-35)	bus
+Vigo	Spain	EstaciĂłn Intermodal de Vigo	Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	ALSA	01:15	16	Average (16-25)	bus
+Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	Vigo	Spain	EstaciĂłn Intermodal de Vigo	ALSA	01:15	16	Average (16-25)	bus
+Vigo	Spain	EstaciĂłn Intermodal de Vigo	Pontevedra	Spain	EstaciĂłn de Autobuses de Pontevedra	ALSA	00:30	18	High (26-35)	bus
+Pontevedra	Spain	EstaciĂłn de Autobuses de Pontevedra	Vigo	Spain	EstaciĂłn Intermodal de Vigo	ALSA	00:30	18	High (26-35)	bus
+Ourense	Spain	EstaciĂłn de Autobuses de Ourense	Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	ALSA	01:40	8	Low (6-15)	bus
+Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	Ourense	Spain	EstaciĂłn de Autobuses de Ourense	ALSA	01:40	8	Low (6-15)	bus
+LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	Zaragoza	Spain	EstaciĂłn Delicias (Bus)	ALSA	01:55	8	Low (6-15)	bus
+Zaragoza	Spain	EstaciĂłn Delicias (Bus)	LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	ALSA	01:55	8	Low (6-15)	bus
+Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses Donostia	ALSA	01:10	12	Average (16-25)	bus
+San SebastiĂˇn	Spain	EstaciĂłn de Autobuses Donostia	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	01:10	12	Average (16-25)	bus
+Porto	Portugal	Terminal Intermodal de CampanhĂŁ	Vigo	Spain	EstaciĂłn Intermodal de Vigo	ALSA	02:30	6	Low (6-15)	bus
+Vigo	Spain	EstaciĂłn Intermodal de Vigo	Porto	Portugal	Terminal Intermodal de CampanhĂŁ	ALSA	02:30	6	Low (6-15)	bus
+Madrid	Spain	EstaciĂłn Sur	Porto	Portugal	CampanhĂŁ	ALSA	07:30	3	Very Low (0-5)	bus
+Porto	Portugal	CampanhĂŁ	Madrid	Spain	EstaciĂłn Sur	ALSA	07:30	3	Very Low (0-5)	bus
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Tangier Med	Morocco	Port Tanger Med (bus+ferry)	ALSA	05:30	2	Very Low (0-5)	bus
+Algeciras	Spain	EstaciĂłn de Autobuses de Algeciras	Tangier Ville	Morocco	Gare RoutiĂ¨re Tanger	ALSA	02:30	2	Very Low (0-5)	bus
 
