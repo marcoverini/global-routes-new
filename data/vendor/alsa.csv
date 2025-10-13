@@ -1,206 +1,193 @@
-origin_city, origin_country, origin_station, destination_city, destination_country, destination_station, operator_name, duration, frequency_daily, frequency_label
-Madrid, Spain, Estación Sur de Madrid, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Valencia, Spain, Estación de Autobuses de Valencia, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Sevilla, Spain, Estación de Autobuses de Sevilla, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Málaga, Spain, Estación de Autobuses de Málaga, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Bilbao, Spain, Estación de Autobuses de Bilbao, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Palma de Mallorca, Spain, Estación de Autobuses de Palma de Mallorca, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Las Palmas, Spain, Estación de Autobuses de Las Palmas, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Alicante, Spain, Estación de Autobuses de Alicante, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, Córdoba, Spain, Estación de Autobuses de Córdoba, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Granada, Spain, Estación de Autobuses de Granada, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Santander, Spain, Estación de Autobuses de Santander, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Valladolid, Spain, Estación de Autobuses de Valladolid, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Vigo, Spain, Estación de Autobuses de Vigo, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, A Coruña, Spain, Estación de Autobuses de A Coruña, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Badajoz, Spain, Estación de Autobuses de Badajoz, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Cádiz, Spain, Estación de Autobuses de Cádiz, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Pamplona, Spain, Estación de Autobuses de Pamplona, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Logroño, Spain, Estación de Autobuses de Logroño, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, León, Spain, Estación de Autobuses de León, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Oviedo, Spain, Estación de Autobuses de Oviedo, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Burgos, Spain, Estación de Autobuses de Burgos, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Albacete, Spain, Estación de Autobuses de Albacete, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Huelva, Spain, Estación de Autobuses de Huelva, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 5, daily services
-Madrid, Spain, Estación Sur de Madrid, San Sebastián, Spain, Estación de Autobuses de San Sebastián, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Vitoria, Spain, Estación de Autobuses de Vitoria-Gasteiz, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Girona, Spain, Estación de Autobuses de Girona, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Jaén, Spain, Estación de Autobuses de Jaén, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Cáceres, Spain, Estación de Autobuses de Cáceres, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Marbella, Spain, Estación de Autobuses de Marbella, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Mérida, Spain, Estación de Autobuses de Mérida, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Torrelavega, Spain, Estación de Autobuses de Torrelavega, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Palma, Spain, Estación de Autobuses de Palma, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Santa Cruz de Tenerife, Spain, Estación de Autobuses de Santa Cruz, ALSA, , 1, daily service
-Madrid, Spain, Estación Sur de Madrid, Las Palmas, Spain, Estación de Autobuses de Las Palmas, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Madrid, Spain, Estación Sur de Madrid, ALSA, , 5, daily services
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Valencia, Spain, Estación de Autobuses de Valencia, ALSA, , 5, daily services
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Sevilla, Spain, Estación de Autobuses de Sevilla, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Granada, Spain, Estación de Autobuses de Granada, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Málaga, Spain, Estación de Autobuses de Málaga, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Bilbao, Spain, Estación de Autobuses de Bilbao, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 5, daily services
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Alicante, Spain, Estación de Autobuses de Alicante, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Córdoba, Spain, Estación de Autobuses de Córdoba, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, San Sebastián, Spain, Estación de Autobuses de San Sebastián, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Pamplona, Spain, Estación de Autobuses de Pamplona, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Valladolid, Spain, Estación de Autobuses de Valladolid, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Vigo, Spain, Estación de Autobuses de Vigo, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, A Coruña, Spain, Estación de Autobuses de A Coruña, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, León, Spain, Estación de Autobuses de León, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Logroño, Spain, Estación de Autobuses de Logroño, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Oviedo, Spain, Estación de Autobuses de Oviedo, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Santander, Spain, Estación de Autobuses de Santander, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Burgos, Spain, Estación de Autobuses de Burgos, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Huesca, Spain, Estación de Autobuses de Huesca, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Jaén, Spain, Estación de Autobuses de Jaén, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Marbella, Spain, Estación de Autobuses de Marbella, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Almería, Spain, Estación de Autobuses de Almería, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Cáceres, Spain, Estación de Autobuses de Cáceres, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Talavera de la Reina, Spain, Estación de Autobuses de Talavera de la Reina, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Vitoria, Spain, Estación de Autobuses de Vitoria-Gasteiz, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Lleida, Spain, Estación de Autobuses de Lleida, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Girona, Spain, Estación de Autobuses de Girona, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Badajoz, Spain, Estación de Autobuses de Badajoz, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Cádiz, Spain, Estación de Autobuses de Cádiz, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Huelva, Spain, Estación de Autobuses de Huelva, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Santa Cruz de Tenerife, Spain, Estación de Autobuses de Santa Cruz, ALSA, , 1, daily service
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Las Palmas, Spain, Estación de Autobuses de Las Palmas, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Madrid, Spain, Estación Sur de Madrid, ALSA, , 5, daily services
-Valencia, Spain, Estación de Autobuses de Valencia, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 5, daily services
-Valencia, Spain, Estación de Autobuses de Valencia, Sevilla, Spain, Estación de Autobuses de Sevilla, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Bilbao, Spain, Estación de Autobuses de Bilbao, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Málaga, Spain, Estación de Autobuses de Málaga, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Alicante, Spain, Estación de Autobuses de Alicante, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Granada, Spain, Estación de Autobuses de Granada, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Valladolid, Spain, Estación de Autobuses de Valladolid, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Gijón, Spain, Estación de Autobuses de Gijón, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Oviedo, Spain, Estación de Autobuses de Oviedo, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, San Sebastián, Spain, Estación de Autobuses de San Sebastián, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Vitoria, Spain, Estación de Autobuses de Vitoria-Gasteiz, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Pamplona, Spain, Estación de Autobuses de Pamplona, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Logroño, Spain, Estación de Autobuses de Logroño, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, León, Spain, Estación de Autobuses de León, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Albacete, Spain, Estación de Autobuses de Albacete, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Castellón de la Plana, Spain, Estación de Autobuses de Castellón de la Plana, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Huelva, Spain, Estación de Autobuses de Huelva, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Cádiz, Spain, Estación de Autobuses de Cádiz, ALSA, , 1, daily service
-Valencia, Spain, Estación de Autobuses de Valencia, Badajoz, Spain, Estación de Autobuses de Badajoz, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Madrid, Spain, Estación Sur de Madrid, ALSA, , 5, daily services
-Sevilla, Spain, Estación de Autobuses de Sevilla, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Valencia, Spain, Estación de Autobuses de Valencia, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Bilbao, Spain, Estación de Autobuses de Bilbao, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Málaga, Spain, Estación de Autobuses de Málaga, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Granada, Spain, Estación de Autobuses de Granada, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Almería, Spain, Estación de Autobuses de Almería, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Córdoba, Spain, Estación de Autobuses de Córdoba, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Cádiz, Spain, Estación de Autobuses de Cádiz, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Huelva, Spain, Estación de Autobuses de Huelva, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Badajoz, Spain, Estación de Autobuses de Badajoz, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Pamplona, Spain, Estación de Autobuses de Pamplona, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Burgos, Spain, Estación de Autobuses de Burgos, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, León, Spain, Estación de Autobuses de León, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Mérida, Spain, Estación de Autobuses de Mérida, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Cáceres, Spain, Estación de Autobuses de Cáceres, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Albacete, Spain, Estación de Autobuses de Albacete, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Marbella, Spain, Estación de Autobuses de Marbella, ALSA, , 1, daily service
-Sevilla, Spain, Estación de Autobuses de Sevilla, Jaén, Spain, Estación de Autobuses de Jaén, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Madrid, Spain, Estación Sur de Madrid, ALSA, , 5, daily services
-Málaga, Spain, Estación de Autobuses de Málaga, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Valencia, Spain, Estación de Autobuses de Valencia, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Bilbao, Spain, Estación de Autobuses de Bilbao, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Sevilla, Spain, Estación de Autobuses de Sevilla, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Granada, Spain, Estación de Autobuses de Granada, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Córdoba, Spain, Estación de Autobuses de Córdoba, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Almería, Spain, Estación de Autobuses de Almería, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Cádiz, Spain, Estación de Autobuses de Cádiz, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Marbella, Spain, Estación de Autobuses de Marbella, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Huelva, Spain, Estación de Autobuses de Huelva, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Badajoz, Spain, Estación de Autobuses de Badajoz, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Algeciras, Spain, Estación de Autobuses de Algeciras, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Málaga, Spain, Estación de Autobuses de Málaga, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Madrid, Spain, Estación Sur de Madrid, ALSA, , 5, daily services
-Bilbao, Spain, Estación de Autobuses de Bilbao, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Valencia, Spain, Estación de Autobuses de Valencia, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Sevilla, Spain, Estación de Autobuses de Sevilla, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Zaragoza, Spain, Estación de Autobuses de Zaragoza, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Málaga, Spain, Estación de Autobuses de Málaga, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Alicante, Spain, Estación de Autobuses de Alicante, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Valladolid, Spain, Estación de Autobuses de Valladolid, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Burgos, Spain, Estación de Autobuses de Burgos, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Pamplona, Spain, Estación de Autobuses de Pamplona, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Logroño, Spain, Estación de Autobuses de Logroño, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, San Sebastián, Spain, Estación de Autobuses de San Sebastián, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Vitoria, Spain, Estación de Autobuses de Vitoria-Gasteiz, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Oviedo, Spain, Estación de Autobuses de Oviedo, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Gijón, Spain, Estación de Autobuses de Gijón, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, León, Spain, Estación de Autobuses de León, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Cáceres, Spain, Estación de Autobuses de Cáceres, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Mérida, Spain, Estación de Autobuses de Mérida, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Albacete, Spain, Estación de Autobuses de Albacete, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Algeciras, Spain, Estación de Autobuses de Algeciras, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Tenerife (Santa Cruz), Spain, Estación de Autobuses de Santa Cruz, ALSA, , 1, daily service
-Bilbao, Spain, Estación de Autobuses de Bilbao, Gran Canaria (Las Palmas), Spain, Estación de Autobuses de Las Palmas, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Madrid, Spain, Estación Sur de Madrid, ALSA, , 5, daily services
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 5, daily services
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Valencia, Spain, Estación de Autobuses de Valencia, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Bilbao, Spain, Estación de Autobuses de Bilbao, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Sevilla, Spain, Estación de Autobuses de Sevilla, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Málaga, Spain, Estación de Autobuses de Málaga, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Alicante, Spain, Estación de Autobuses de Alicante, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Murcia, Spain, Estación de Autobuses de Murcia, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Valladolid, Spain, Estación de Autobuses de Valladolid, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Salamanca, Spain, Estación de Autobuses de Salamanca, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Burgos, Spain, Estación de Autobuses de Burgos, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Santander, Spain, Estación de Autobuses de Santander, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, San Sebastián, Spain, Estación de Autobuses de San Sebastián, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Vitoria, Spain, Estación de Autobuses de Vitoria-Gasteiz, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Logroño, Spain, Estación de Autobuses de Logroño, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Pamplona, Spain, Estación de Autobuses de Pamplona, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Lleida, Spain, Estación de Autobuses de Lleida, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Huesca, Spain, Estación de Autobuses de Huesca, ALSA, , 1, daily service
-Zaragoza, Spain, Estación de Autobuses de Zaragoza, Teruel, Spain, Estación de Autobuses de Teruel, ALSA, , 1, daily service
-Palma, Spain, Estación de Autobuses de Palma, Madrid, Spain, Estación Sur de Madrid, ALSA, , 1, daily service
-Santa Cruz de Tenerife, Spain, Estación de Autobuses de Santa Cruz, Madrid, Spain, Estación Sur de Madrid, ALSA, , 1, daily service
-Las Palmas, Spain, Estación de Autobuses de Las Palmas, Madrid, Spain, Estación Sur de Madrid, ALSA, , 1, daily service
-**International Routes:**
-Madrid, Spain, Estación Sur de Madrid, Lisbon (Lisboa), Portugal, Lisbon Oriente Bus Station, ALSA, , 1, daily service:contentReference[oaicite:2]{index=2}
-Madrid, Spain, Estación Sur de Madrid, Paris, France, Paris Gallieni Bus Station, ALSA, , 1, daily service:contentReference[oaicite:3]{index=3}:contentReference[oaicite:4]{index=4}
-Madrid, Spain, Estación Sur de Madrid, Porto (Oporto), Portugal, Porto Bus Station, ALSA, , 1, daily service:contentReference[oaicite:5]{index=5}
-Madrid, Spain, Estación Sur de Madrid, Casablanca, Morocco, Casablanca Bus Station, ALSA, , 1, daily service:contentReference[oaicite:6]{index=6}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Paris, France, Paris Gallieni Bus Station, ALSA, , 1, daily service:contentReference[oaicite:7]{index=7}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Lyon, France, Lyon Perrache Bus Station, ALSA, , 1, daily service:contentReference[oaicite:8]{index=8}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Marseille (Marsella), France, Marseille Bus Station, ALSA, , 1, daily service:contentReference[oaicite:9]{index=9}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Milan (Milán), Italy, Milan Bus Station, ALSA, , 1, daily service:contentReference[oaicite:10]{index=10}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Geneva (Ginebra), Switzerland, Geneva Bus Station, ALSA, , 1, daily service:contentReference[oaicite:11]{index=11}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Frankfurt (Fráncfort), Germany, Frankfurt Bus Station, ALSA, , 1, daily service:contentReference[oaicite:12]{index=12}
-Barcelona, Spain, Estación de Autobuses Barcelona Nord, Zurich (Zúrich), Switzerland, Zurich Bus Station, ALSA, , 1, daily service:contentReference[oaicite:13]{index=13}
-Bilbao, Spain, Estación de Autobuses de Bilbao, Rennes, France, Rennes Bus Station, ALSA, , 1, daily service:contentReference[oaicite:14]{index=14}
-Bilbao, Spain, Estación de Autobuses de Bilbao, Dijon, France, Dijon Bus Station, ALSA, , 1, daily service
-Lisbon (Lisboa), Portugal, Lisbon Oriente Bus Station, Paris, France, Paris Gallieni Bus Station, ALSA, , 1, daily service:contentReference[oaicite:16]{index=16}
-Lisbon (Lisboa), Portugal, Lisbon Oriente Bus Station, Seville (Sevilla), Spain, Estación de Autobuses de Sevilla, ALSA, , 1, daily service:contentReference[oaicite:17]{index=17}
-Lisbon (Lisboa), Portugal, Lisbon Oriente Bus Station, Porto (Oporto), Portugal, Porto Bus Station, ALSA, , 1, daily service:contentReference[oaicite:18]{index=18}
-Porto (Oporto), Portugal, Porto Bus Station, Paris, France, Paris Gallieni Bus Station, ALSA, , 1, daily service:contentReference[oaicite:19]{index=19}
-Porto (Oporto), Portugal, Porto Bus Station, Santiago de Compostela, Spain, Estación de Autobuses de Santiago, ALSA, , 1, daily service:contentReference[oaicite:20]{index=20}
-Andorra la Vella, Andorra, Andorra Bus Station, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 1, daily service:contentReference[oaicite:21]{index=21}
-Casablanca, Morocco, Casablanca Bus Station, Marrakesh (Marrakech), Morocco, Marrakech Bus Station, ALSA, , 1, daily service:contentReference[oaicite:22]{index=22}
-Fez, Morocco, Fez Bus Station, Rabat, Morocco, Rabat Bus Station, ALSA, , 1, daily service:contentReference[oaicite:23]{index=23}
-Geneva (Ginebra), Switzerland, Geneva Bus Station, Madrid, Spain, Estación Sur de Madrid, ALSA, , 1, daily service:contentReference[oaicite:24]{index=24}
-Tangier (Tánger), Morocco, Tangier Bus Station, Barcelona, Spain, Estación de Autobuses Barcelona Nord, ALSA, , 1, daily service:contentReference[oaicite:25]{index=25}
+origin_city	origin_country	origin_station	destination_city	destination_country	destination_station	operator_name	duration	frequency_daily	frequency_label
+Madrid	Spain	EstaciĂłn Sur de Madrid	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	08:18	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	04:58	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	06:25	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	06:50	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	ALSA	05:18	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	04:29	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	05:44	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Alicante	Spain	EstaciĂłn de Autobuses de Alicante	ALSA	05:55	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	04:52	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Granada	Spain	EstaciĂłn de Autobuses de Granada	ALSA	05:55	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Santander	Spain	EstaciĂłn de Autobuses de Santander	ALSA	05:34	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Valladolid	Spain	EstaciĂłn de Autobuses de Valladolid	ALSA	02:40	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Vigo	Spain	EstaciĂłn de Autobuses de Vigo	ALSA	07:39	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	A CoruĂ±a	Spain	EstaciĂłn de Autobuses de A CoruĂ±a	ALSA	08:22	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Badajoz	Spain	EstaciĂłn de Autobuses de Badajoz	ALSA	05:23	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	ALSA	08:01	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	05:12	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	ALSA	04:07	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	ALSA	04:44	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Oviedo	Spain	EstaciĂłn de Autobuses de Oviedo	ALSA	06:07	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	02:54	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Burgos	Spain	EstaciĂłn de Autobuses de Burgos	ALSA	03:31	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Albacete	Spain	EstaciĂłn de Autobuses de Albacete	ALSA	03:40	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Huelva	Spain	EstaciĂłn de Autobuses de Huelva	ALSA	07:23	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	05:44	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	04:29	5	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses de San SebastiĂˇn	ALSA	05:48	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Vitoria	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	ALSA	04:39	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Girona	Spain	EstaciĂłn de Autobuses de Girona	ALSA	09:25	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	JaĂ©n	Spain	EstaciĂłn de Autobuses de JaĂ©n	ALSA	04:49	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	CĂˇceres	Spain	EstaciĂłn de Autobuses de CĂˇceres	ALSA	04:07	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Marbella	Spain	EstaciĂłn de Autobuses de Marbella	ALSA	07:20	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	MĂ©rida	Spain	EstaciĂłn de Autobuses de MĂ©rida	ALSA	04:37	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Torrelavega	Spain	EstaciĂłn de Autobuses de Torrelavega	ALSA	05:23	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	08:18	5	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	04:59	5	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	13:38	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Granada	Spain	EstaciĂłn de Autobuses de Granada	ALSA	11:12	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	12:39	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	ALSA	07:42	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	04:13	5	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Alicante	Spain	EstaciĂłn de Autobuses de Alicante	ALSA	06:41	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	11:41	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses de San SebastiĂˇn	ALSA	06:38	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	05:48	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	07:45	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Valladolid	Spain	EstaciĂłn de Autobuses de Valladolid	ALSA	09:27	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Vigo	Spain	EstaciĂłn de Autobuses de Vigo	ALSA	14:54	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	A CoruĂ±a	Spain	EstaciĂłn de Autobuses de A CoruĂ±a	ALSA	14:43	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	ALSA	10:44	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	ALSA	06:35	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Oviedo	Spain	EstaciĂłn de Autobuses de Oviedo	ALSA	11:24	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	10:48	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Santander	Spain	EstaciĂłn de Autobuses de Santander	ALSA	08:55	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Burgos	Spain	EstaciĂłn de Autobuses de Burgos	ALSA	08:10	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Huesca	Spain	EstaciĂłn de Autobuses de Huesca	ALSA	03:47	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	JaĂ©n	Spain	EstaciĂłn de Autobuses de JaĂ©n	ALSA	10:40	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Marbella	Spain	EstaciĂłn de Autobuses de Marbella	ALSA	13:24	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	AlmerĂ­a	Spain	EstaciĂłn de Autobuses de AlmerĂ­a	ALSA	10:36	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	CĂˇceres	Spain	EstaciĂłn de Autobuses de CĂˇceres	ALSA	12:23	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Talavera de la Reina	Spain	EstaciĂłn de Autobuses de Talavera de la Reina	ALSA	10:03	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Vitoria	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	ALSA	07:05	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Lleida	Spain	EstaciĂłn de Autobuses de Lleida	ALSA	02:10	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Girona	Spain	EstaciĂłn de Autobuses de Girona	ALSA	01:24	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Badajoz	Spain	EstaciĂłn de Autobuses de Badajoz	ALSA	13:34	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	ALSA	14:56	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Huelva	Spain	EstaciĂłn de Autobuses de Huelva	ALSA	14:55	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	07:45	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	04:58	5	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	04:59	5	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	08:53	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	ALSA	07:46	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	04:03	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	07:41	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Alicante	Spain	EstaciĂłn de Autobuses de Alicante	ALSA	02:04	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	02:54	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Granada	Spain	EstaciĂłn de Autobuses de Granada	ALSA	06:14	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Valladolid	Spain	EstaciĂłn de Autobuses de Valladolid	ALSA	07:14	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	GijĂłn	Spain	EstaciĂłn de Autobuses de GijĂłn	ALSA	10:21	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Oviedo	Spain	EstaciĂłn de Autobuses de Oviedo	ALSA	10:20	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses de San SebastiĂˇn	ALSA	07:22	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Vitoria	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	ALSA	06:56	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	06:21	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	ALSA	06:10	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	ALSA	09:09	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	07:52	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	02:54	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Albacete	Spain	EstaciĂłn de Autobuses de Albacete	ALSA	02:16	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	CastellĂłn de la Plana	Spain	EstaciĂłn de Autobuses de CastellĂłn de la Plana	ALSA	01:03	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Huelva	Spain	EstaciĂłn de Autobuses de Huelva	ALSA	10:14	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	ALSA	10:04	1	Very Low
+Valencia	Spain	EstaciĂłn de Autobuses de Valencia	Badajoz	Spain	EstaciĂłn de Autobuses de Badajoz	ALSA	09:24	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	06:25	5	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	13:38	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	08:53	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	ALSA	11:32	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	02:35	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Granada	Spain	EstaciĂłn de Autobuses de Granada	ALSA	03:29	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	AlmerĂ­a	Spain	EstaciĂłn de Autobuses de AlmerĂ­a	ALSA	05:14	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	01:58	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	ALSA	01:38	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Huelva	Spain	EstaciĂłn de Autobuses de Huelva	ALSA	01:25	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Badajoz	Spain	EstaciĂłn de Autobuses de Badajoz	ALSA	03:04	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	06:33	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	10:35	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	11:37	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Burgos	Spain	EstaciĂłn de Autobuses de Burgos	ALSA	09:36	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	ALSA	09:32	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	MĂ©rida	Spain	EstaciĂłn de Autobuses de MĂ©rida	ALSA	02:50	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	CĂˇceres	Spain	EstaciĂłn de Autobuses de CĂˇceres	ALSA	03:51	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Albacete	Spain	EstaciĂłn de Autobuses de Albacete	ALSA	06:37	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	Marbella	Spain	EstaciĂłn de Autobuses de Marbella	ALSA	02:16	1	Very Low
+Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	JaĂ©n	Spain	EstaciĂłn de Autobuses de JaĂ©n	ALSA	03:16	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	06:50	5	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	12:39	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	07:41	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	ALSA	12:08	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	02:35	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Granada	Spain	EstaciĂłn de Autobuses de Granada	ALSA	01:28	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	CĂłrdoba	Spain	EstaciĂłn de Autobuses de CĂłrdoba	ALSA	02:12	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	AlmerĂ­a	Spain	EstaciĂłn de Autobuses de AlmerĂ­a	ALSA	02:52	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	CĂˇdiz	Spain	EstaciĂłn de Autobuses de CĂˇdiz	ALSA	02:46	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Marbella	Spain	EstaciĂłn de Autobuses de Marbella	ALSA	00:47	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Huelva	Spain	EstaciĂłn de Autobuses de Huelva	ALSA	03:49	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Badajoz	Spain	EstaciĂłn de Autobuses de Badajoz	ALSA	05:24	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Algeciras	Spain	EstaciĂłn de Autobuses de Algeciras	ALSA	01:51	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	07:58	1	Very Low
+MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	10:18	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	05:18	5	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	07:42	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	07:46	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	11:32	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	ALSA	04:02	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	12:08	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Alicante	Spain	EstaciĂłn de Autobuses de Alicante	ALSA	09:36	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	09:57	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Valladolid	Spain	EstaciĂłn de Autobuses de Valladolid	ALSA	03:48	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	05:35	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Burgos	Spain	EstaciĂłn de Autobuses de Burgos	ALSA	01:58	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	01:54	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	ALSA	01:36	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses de San SebastiĂˇn	ALSA	01:16	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Vitoria	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	ALSA	00:50	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Oviedo	Spain	EstaciĂłn de Autobuses de Oviedo	ALSA	03:53	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	GijĂłn	Spain	EstaciĂłn de Autobuses de GijĂłn	ALSA	03:39	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	LeĂłn	Spain	EstaciĂłn de Autobuses de LeĂłn	ALSA	03:43	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	CĂˇceres	Spain	EstaciĂłn de Autobuses de CĂˇceres	ALSA	08:22	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	MĂ©rida	Spain	EstaciĂłn de Autobuses de MĂ©rida	ALSA	09:13	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Albacete	Spain	EstaciĂłn de Autobuses de Albacete	ALSA	07:56	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Algeciras	Spain	EstaciĂłn de Autobuses de Algeciras	ALSA	13:30	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	04:29	5	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	04:13	5	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Valencia	Spain	EstaciĂłn de Autobuses de Valencia	ALSA	04:03	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	ALSA	04:02	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Sevilla	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	10:35	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	MĂˇlaga	Spain	EstaciĂłn de Autobuses de MĂˇlaga	ALSA	10:18	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Alicante	Spain	EstaciĂłn de Autobuses de Alicante	ALSA	06:04	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Murcia	Spain	EstaciĂłn de Autobuses de Murcia	ALSA	06:41	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Valladolid	Spain	EstaciĂłn de Autobuses de Valladolid	ALSA	05:14	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Salamanca	Spain	EstaciĂłn de Autobuses de Salamanca	ALSA	06:40	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Burgos	Spain	EstaciĂłn de Autobuses de Burgos	ALSA	04:01	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Santander	Spain	EstaciĂłn de Autobuses de Santander	ALSA	05:08	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	San SebastiĂˇn	Spain	EstaciĂłn de Autobuses de San SebastiĂˇn	ALSA	03:23	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Vitoria	Spain	EstaciĂłn de Autobuses de Vitoria-Gasteiz	ALSA	03:15	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	LogroĂ±o	Spain	EstaciĂłn de Autobuses de LogroĂ±o	ALSA	02:35	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Pamplona	Spain	EstaciĂłn de Autobuses de Pamplona	ALSA	02:22	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Lleida	Spain	EstaciĂłn de Autobuses de Lleida	ALSA	02:04	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Huesca	Spain	EstaciĂłn de Autobuses de Huesca	ALSA	01:07	1	Very Low
+Zaragoza	Spain	EstaciĂłn de Autobuses de Zaragoza	Teruel	Spain	EstaciĂłn de Autobuses de Teruel	ALSA	02:24	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Lisbon (Lisboa)	Portugal	Lisbon Oriente Bus Station	ALSA	08:53	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Paris	France	Paris Gallieni Bus Station	ALSA	18:38	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Porto (Oporto)	Portugal	Porto Bus Station	ALSA	07:29	1	Very Low
+Madrid	Spain	EstaciĂłn Sur de Madrid	Casablanca	Morocco	Casablanca Bus Station	ALSA	14:47	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Paris	France	Paris Gallieni Bus Station	ALSA	14:42	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Lyon	France	Lyon Perrache Bus Station	ALSA	09:25	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Marseille (Marsella)	France	Marseille Bus Station	ALSA	05:59	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Milan (MilĂˇn)	Italy	Milan Bus Station	ALSA	12:50	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Geneva (Ginebra)	Switzerland	Geneva Bus Station	ALSA	11:02	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Frankfurt (FrĂˇncfort)	Germany	Frankfurt Bus Station	ALSA	19:20	1	Very Low
+Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	Zurich (ZĂşrich)	Switzerland	Zurich Bus Station	ALSA	14:48	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Rennes	France	Rennes Bus Station	ALSA	09:42	1	Very Low
+Bilbao	Spain	EstaciĂłn de Autobuses de Bilbao	Dijon	France	Dijon Bus Station	ALSA	13:37	1	Very Low
+Lisbon (Lisboa)	Portugal	Lisbon Oriente Bus Station	Paris	France	Paris Gallieni Bus Station	ALSA	25:42:00	1	Very Low
+Lisbon (Lisboa)	Portugal	Lisbon Oriente Bus Station	Seville (Sevilla)	Spain	EstaciĂłn de Autobuses de Sevilla	ALSA	05:33	1	Very Low
+Lisbon (Lisboa)	Portugal	Lisbon Oriente Bus Station	Porto (Oporto)	Portugal	Porto Bus Station	ALSA	04:51	1	Very Low
+Porto (Oporto)	Portugal	Porto Bus Station	Paris	France	Paris Gallieni Bus Station	ALSA	21:28	1	Very Low
+Porto (Oporto)	Portugal	Porto Bus Station	Santiago de Compostela	Spain	EstaciĂłn de Autobuses de Santiago	ALSA	03:23	1	Very Low
+Andorra la Vella	Andorra	Andorra Bus Station	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	02:24	1	Very Low
+Casablanca	Morocco	Casablanca Bus Station	Marrakesh (Marrakech)	Morocco	Marrakech Bus Station	ALSA	03:53	1	Very Low
+Fez	Morocco	Fez Bus Station	Rabat	Morocco	Rabat Bus Station	ALSA	02:59	1	Very Low
+Geneva (Ginebra)	Switzerland	Geneva Bus Station	Madrid	Spain	EstaciĂłn Sur de Madrid	ALSA	18:06	1	Very Low
+Tangier (TĂˇnger)	Morocco	Tangier Bus Station	Barcelona	Spain	EstaciĂłn de Autobuses Barcelona Nord	ALSA	16:33	1	Very Low
