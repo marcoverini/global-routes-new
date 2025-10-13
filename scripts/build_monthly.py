@@ -8,8 +8,34 @@ from connectors import (
     bus_irishcitylink
 )
 
-# Ensure output directory exists
 os.makedirs("data/outputs", exist_ok=True)
+
+def load_vendor_csv(path):
+    """Load vendor CSV safely, auto-detecting delimiters and fixing headers."""
+    try:
+        # Detect delimiter (, or tab)
+        with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+            first_line = f.readline()
+        sep = '\t' if '\t' in first_line else ','
+
+        df = pd.read_csv(path, sep=sep, encoding='utf-8', on_bad_lines='skip')
+
+        # Normalize column names
+        df.columns = (
+            df.columns.str.strip()
+                      .str.lower()
+                      .str.replace('\t', '')
+                      .str.replace(' ', '_')
+        )
+
+        # Drop empty columns
+        df = df.dropna(how='all', axis=1)
+
+        print(f"   ✅ Loaded {os.path.basename(path)} ({len(df)} rows, sep='{sep}')")
+        return df
+    except Exception as e:
+        print(f"   ⚠️ Failed to load {path}: {e}")
+        return pd.DataFrame()
 
 def main(out_dir="data/outputs"):
     print("🚌 Building global bus dataset...\n")
@@ -43,34 +69,27 @@ def main(out_dir="data/outputs"):
     except Exception as e:
         print(f"❌ Irish Citylink failed: {e}")
 
-    # --- 4. Vendor datasets (static .csv files like ALSA, Megabus, etc.) ---
+    # --- 4. Vendor CSVs ---
     print("\n▶ Including vendor datasets…")
     vendor_dir = os.path.join("data", "vendor")
-
-    if not os.path.exists(vendor_dir):
-        print("⚠️ No vendor directory found, skipping.")
+    vendor_files = glob.glob(os.path.join(vendor_dir, "*.csv"))
+    if not vendor_files:
+        print("⚠️ No vendor CSV files found.")
     else:
-        vendor_files = glob.glob(os.path.join(vendor_dir, "*.csv"))
-        if not vendor_files:
-            print("⚠️ No vendor CSV files found in data/vendor/")
-        else:
-            for vf in vendor_files:
-                try:
-                    vdf = pd.read_csv(vf)
-                    print(f"   → Added vendor dataset: {os.path.basename(vf)} ({len(vdf)} rows)")
-                    frames.append(vdf)
-                except Exception as e:
-                    print(f"   ⚠️ Failed to load {vf}: {e}")
+        for vf in vendor_files:
+            vdf = load_vendor_csv(vf)
+            if not vdf.empty:
+                frames.append(vdf)
 
     # --- 5. Combine everything ---
     if frames:
         df_all = pd.concat(frames, ignore_index=True)
         print(f"\n✅ Total combined routes: {len(df_all)} rows")
     else:
-        print("⚠️ No data combined, output will be empty.")
+        print("⚠️ No data combined.")
         df_all = pd.DataFrame()
 
-    # --- 6. Save final output ---
+    # --- 6. Save ---
     out_path = os.path.join(out_dir, "world_bus.csv")
     df_all.to_csv(out_path, index=False, encoding="utf-8")
     print(f"💾 Saved combined dataset to {out_path}")
