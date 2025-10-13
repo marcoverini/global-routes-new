@@ -19,12 +19,19 @@ def _fetch_locations():
     for base in BASES:
         try:
             r = requests.get(base + LOC_SUFFIX, timeout=60)
+            print(f"{'US' if 'us.' in base else 'CA'} Megabus locations status:", r.status_code)
+            print("Preview:", r.text[:200])
             r.raise_for_status()
-            df = pd.DataFrame(r.json())
-            if not df.empty:
-                df["source_base"] = base
-                frames.append(df)
-        except Exception:
+
+            if "application/json" in r.headers.get("content-type", ""):
+                df = pd.DataFrame(r.json())
+                if not df.empty:
+                    df["source_base"] = base
+                    frames.append(df)
+            else:
+                print(f"⚠️ {base} did not return JSON.")
+        except Exception as e:
+            print(f"❌ Error fetching {base} locations:", e)
             continue
     return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
 
@@ -35,7 +42,7 @@ def fetch_routes():
         print("⚠️ No NA locations returned")
         return pd.DataFrame()
 
-    # Normalize
+    # Normalize names → city names
     def city_from(name: str):
         if not isinstance(name, str):
             return None
@@ -57,9 +64,13 @@ def fetch_routes():
         for d in ids[i+1:]:
             orec = loc_df.loc[loc_df["id"] == o].iloc[0]
             drec = loc_df.loc[loc_df["id"] == d].iloc[0]
-            base = orec["source_base"]  # use the origin’s domain
+            base = orec["source_base"]
 
-            payload = {"originId": int(o), "destinationId": int(d), "departureDate": pd.Timestamp.today().strftime("%Y-%m-%d")}
+            payload = {
+                "originId": int(o),
+                "destinationId": int(d),
+                "departureDate": pd.Timestamp.today().strftime("%Y-%m-%d")
+            }
             try:
                 rr = requests.post(base + JNY_SUFFIX, json=payload, timeout=35)
                 if rr.status_code != 200:
@@ -86,8 +97,8 @@ def fetch_routes():
                     "origin_country": orec["country"],
                     "destination_country": drec["country"],
                 })
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Error fetching journey {o}->{d} from {base}:", e)
             time.sleep(0.4)
 
     df = pd.DataFrame(results)
