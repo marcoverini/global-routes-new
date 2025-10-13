@@ -18,8 +18,11 @@ def fetch_routes():
     print("Fetching Megabus UK routes (live API)...")
     # 1) locations
     r = requests.get(LOC, timeout=60)
+    print("UK Megabus locations status:", r.status_code)
+    print("Preview:", r.text[:200])
     r.raise_for_status()
-    locs = r.json()  # list of dicts: {id, name, country}
+    locs = r.json() if "application/json" in r.headers.get("content-type","") else []
+
     loc_df = pd.DataFrame(locs)
     if loc_df.empty:
         return pd.DataFrame()
