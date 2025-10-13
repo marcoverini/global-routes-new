@@ -1,23 +1,28 @@
 origin_city,origin_country,origin_station,destination_city,destination_country,destination_station,operator_name,duration,frequency_daily,frequency_label,transport_type
-London,United Kingdom,Victoria Coach Station,Manchester,United Kingdom,Shudehill Interchange,Megabus UK,05:00,10,Low (6-15),bus
-London,United Kingdom,Victoria Coach Station,Glasgow,United Kingdom,Buchanan Bus Station,Megabus UK,08:00,6,Low (6-15),bus
-London,United Kingdom,Victoria Coach Station,Cardiff,United Kingdom,Sophia Gardens,Megabus UK,03:00,12,Average (16-25),bus
-London,United Kingdom,Victoria Coach Station,Birmingham,United Kingdom,Digbeth Coach Station,Megabus UK,02:30,20,High (25+),bus
-London,United Kingdom,Victoria Coach Station,Edinburgh,United Kingdom,Bus Station,Megabus UK,08:15,6,Low (6-15),bus
-Manchester,United Kingdom,Shudehill Interchange,Glasgow,United Kingdom,Buchanan Bus Station,Megabus UK,04:15,9,Low (6-15),bus
-Manchester,United Kingdom,Shudehill Interchange,Leeds,United Kingdom,Dyer Street,Megabus UK,01:30,12,Average (16-25),bus
-Bristol,United Kingdom,Bond Street,London,United Kingdom,Victoria Coach Station,Megabus UK,02:30,18,High (25+),bus
-Liverpool,United Kingdom,One Bus Station,Manchester,United Kingdom,Shudehill Interchange,Megabus UK,01:00,14,Low (6-15),bus
-London,United Kingdom,Victoria Coach Station,Bournemouth,United Kingdom,Coach Station,Megabus UK,02:40,10,Low (6-15),bus
-London,United Kingdom,Victoria Coach Station,Bath,United Kingdom,Bus Station,Megabus UK,02:30,7,Low (6-15),bus
-London,United Kingdom,Victoria Coach Station,Leeds,United Kingdom,Dyer Street,Megabus UK,04:30,8,Low (6-15),bus
-New York,United States,Port Authority Bus Terminal,Washington DC,United States,Union Station,Megabus USA,05:00,20,High (25+),bus
+Glasgow,United Kingdom,Buchanan Bus Station,Inverness,United Kingdom,Inverness Bus Station,Megabus UK,03:38,10,Low (6-15),bus
+Glasgow,United Kingdom,Buchanan Bus Station,Perth,United Kingdom,Perth Bus Station,Megabus UK,01:15,22,Average (16-25),bus
+Glasgow,United Kingdom,Buchanan Bus Station,Dundee,United Kingdom,Dundee Seagate Bus Station,Megabus UK,01:45,22,Average (16-25),bus
+Glasgow,United Kingdom,Buchanan Bus Station,Aberdeen,United Kingdom,Union Square Bus Station,Megabus UK,03:15,24,Average (16-25),bus
+Edinburgh,United Kingdom,Edinburgh Bus Station,Dundee,United Kingdom,Dundee Seagate Bus Station,Megabus UK,01:45,32,High (26-35),bus
+Edinburgh,United Kingdom,Edinburgh Bus Station,Aberdeen,United Kingdom,Union Square Bus Station,Megabus UK,03:02,32,High (26-35),bus
+Edinburgh,United Kingdom,Edinburgh Bus Station,Perth,United Kingdom,Perth Bus Station,Megabus UK,01:25,24,Average (16-25),bus
+Edinburgh,United Kingdom,Edinburgh Bus Station,Inverness,United Kingdom,Inverness Bus Station,Megabus UK,03:48,16,Average (16-25),bus
+Edinburgh,United Kingdom,Edinburgh Bus Station,Stirling,United Kingdom,Stirling Bus Station,Megabus UK,01:10,16,Average (16-25),bus
+Edinburgh,United Kingdom,Edinburgh Bus Station,Dunblane,United Kingdom,Dunblane Station,Megabus UK,01:54,12,Low (6-15),bus
+
+New York,United States,Port Authority Bus Terminal,Washington DC,United States,Union Station,Megabus USA,04:00,55,Very High (36+),bus
+Washington DC,United States,Union Station,New York,United States,Port Authority Bus Terminal,Megabus USA,04:00,54,Very High (36+),bus
 New York,United States,Port Authority Bus Terminal,Philadelphia,United States,30th Street Station,Megabus USA,02:15,16,Average (16-25),bus
+Philadelphia,United States,30th Street Station,New York,United States,Port Authority Bus Terminal,Megabus USA,02:15,16,Average (16-25),bus
 New York,United States,Port Authority Bus Terminal,Boston,United States,South Station,Megabus USA,04:30,14,Low (6-15),bus
+Boston,United States,South Station,New York,United States,Port Authority Bus Terminal,Megabus USA,04:30,14,Low (6-15),bus
 Chicago,United States,Union Station,Indianapolis,United States,Amtrak Station,Megabus USA,03:45,10,Low (6-15),bus
 Chicago,United States,Union Station,St Louis,United States,Greyhound Station,Megabus USA,05:30,7,Low (6-15),bus
 Atlanta,United States,Civic Center Station,Orlando,United States,South Street Station,Megabus USA,07:30,5,Very Low (0-5),bus
-Toronto,Canada,Union Station,Montreal,Canada,Gare d'autocars de Montréal,Megabus Canada,06:00,12,Average (16-25),bus
-Toronto,Canada,Union Station,Ottawa,Canada,Bus Terminal,Megabus Canada,04:30,10,Low (6-15),bus
-Montreal,Canada,Gare d'autocars de Montréal,Kingston,Canada,Bus Terminal,Megabus Canada,03:00,8,Low (6-15),bus
-Ottawa,Canada,Bus Terminal,Toronto,Canada,Union Station,Megabus Canada,04:30,9,Low (6-15),bus
+
+Toronto,Canada,Union Station Bus Terminal,Ottawa,Canada,St-Laurent Station (Platform E),Megabus Canada,04:30,10,Low (6-15),bus
+Ottawa,Canada,St-Laurent Station (Platform E),Toronto,Canada,Union Station Bus Terminal,Megabus Canada,04:30,10,Low (6-15),bus
+Toronto,Canada,Union Station Bus Terminal,Montreal,Canada,Gare d'autocars de Montréal,Megabus Canada,06:00,8,Low (6-15),bus
+Montreal,Canada,Gare d'autocars de Montréal,Toronto,Canada,Union Station Bus Terminal,Megabus Canada,06:00,8,Low (6-15),bus
+Toronto,Canada,Union Station Bus Terminal,Kingston,Canada,Kingston Bus Terminal,Megabus Canada,02:45,8,Low (6-15),bus
+Montreal,Canada,Gare d'autocars de Montréal,Kingston,Canada,Kingston Bus Terminal,Megabus Canada,03:00,6,Low (6-15),bus
