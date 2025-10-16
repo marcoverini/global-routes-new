@@ -2,6 +2,7 @@
 import os
 import requests
 import pandas as pd
+import time
 
 API_KEY = os.getenv("AERODATABOX_API_KEY", "YOUR_API_KEY_HERE")
 API_HOST = os.getenv("AERODATABOX_API_HOST", "aerodatabox.p.rapidapi.com")
@@ -14,64 +15,61 @@ HEADERS = {
 
 def fetch_routes():
     """
-    Fetches a simplified list of direct air routes (origin-destination pairs)
-    from AeroDataBox’s open “routes by airline” endpoints.
-    Only includes unique city pairs — no timetable data.
+    Pulls direct flight routes (origin–destination) from AeroDataBox airport endpoints.
     """
-
     print("Connecting to AeroDataBox API...")
 
-    # --- Example airline sample set (expand later) ---
-    airlines = [
-        "BAW",  # British Airways
-        "AFR",  # Air France
-        "DLH",  # Lufthansa
-        "UAE",  # Emirates
-        "AAL",  # American Airlines
-        "RYR",  # Ryanair
-        "EZY",  # easyJet
-        "IBE",  # Iberia
-        "KLM",  # KLM Royal Dutch Airlines
-        "TAP",  # TAP Air Portugal
+    # A representative sample of key airports (expand later)
+    airports = [
+        "LHR", "LGW", "CDG", "ORY", "FRA", "MUC", "AMS", "MAD", "BCN",
+        "DUB", "MXP", "FCO", "ZRH", "VIE", "LIS", "IST", "ATH",
+        "JFK", "LAX", "ORD", "ATL", "DFW", "YYZ", "YUL", "YVR"
     ]
 
     all_routes = []
 
-    for code in airlines:
+    for origin in airports:
         try:
-            print(f"✈ Fetching routes for {code} ...")
-            url = f"{BASE_URL}/airlines/{code}/routes"
+            print(f"✈ Fetching routes from {origin} ...")
+            url = f"{BASE_URL}/airports/{origin}/routes"
             r = requests.get(url, headers=HEADERS, timeout=60)
             if r.status_code != 200:
-                print(f"⚠️  {code}: {r.status_code} {r.text[:100]}")
+                print(f"⚠️  {origin}: {r.status_code} {r.text[:120]}")
                 continue
 
             data = r.json()
 
-            for item in data.get("routes", []):
-                origin = item.get("departure", {}).get("iata", "")
-                destination = item.get("arrival", {}).get("iata", "")
-                if not origin or not destination:
-                    continue
+            destinations = data.get("routes", [])
+            for dest in destinations:
+                dest_code = dest.get("arrival", {}).get("iata", "")
+                dest_city = dest.get("arrival", {}).get("municipalityName", "")
+                dest_country = dest.get("arrival", {}).get("countryName", "")
+                dest_name = dest.get("arrival", {}).get("name", "")
 
-                all_routes.append({
-                    "transport_type": "air",
-                    "operator_name": code,
-                    "origin_city": item.get("departure", {}).get("municipalityName", ""),
-                    "origin_country": item.get("departure", {}).get("countryName", ""),
-                    "origin_station": item.get("departure", {}).get("name", ""),
-                    "destination_city": item.get("arrival", {}).get("municipalityName", ""),
-                    "destination_country": item.get("arrival", {}).get("countryName", ""),
-                    "destination_station": item.get("arrival", {}).get("name", ""),
-                    "duration": None,
-                    "frequency_daily": None,
-                    "frequency_label": None,
-                })
+                origin_city = data.get("airport", {}).get("municipalityName", "")
+                origin_country = data.get("airport", {}).get("countryName", "")
+                origin_name = data.get("airport", {}).get("name", "")
+
+                if dest_code:
+                    all_routes.append({
+                        "transport_type": "air",
+                        "operator_name": None,
+                        "origin_city": origin_city,
+                        "origin_country": origin_country,
+                        "origin_station": origin_name,
+                        "destination_city": dest_city,
+                        "destination_country": dest_country,
+                        "destination_station": dest_name,
+                        "duration": None,
+                        "frequency_daily": None,
+                        "frequency_label": None
+                    })
+
+            time.sleep(1)  # gentle delay for free-tier rate limits
 
         except Exception as e:
-            print(f"❌ Failed to fetch {code}: {e}")
+            print(f"❌ Error fetching {origin}: {e}")
 
-    df = pd.DataFrame(all_routes)
-    print(f"✅ Fetched {len(df)} routes from AeroDataBox.")
+    df = pd.DataFrame(all_routes).drop_duplicates()
+    print(f"✅ Fetched {len(df)} unique routes from AeroDataBox.")
     return df
-
