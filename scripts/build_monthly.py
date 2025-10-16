@@ -1,49 +1,24 @@
 # scripts/build_monthly.py
 import os
-import glob
 import pandas as pd
+
+# --- Connectors ---
 from connectors import (
     bus_flixbus,
     bus_nationalexpress,
-    bus_irishcitylink
+    bus_irishcitylink,
+    air_aerodatabox
 )
 
 os.makedirs("data/outputs", exist_ok=True)
 
-def load_vendor_csv(path):
-    """Load vendor CSV safely, auto-detecting delimiters and fixing headers."""
-    try:
-        # Detect delimiter (, or tab)
-        with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-            first_line = f.readline()
-        sep = '\t' if '\t' in first_line else ','
-
-        df = pd.read_csv(path, sep=sep, encoding='utf-8', on_bad_lines='skip')
-
-        # Normalize column names
-        df.columns = (
-            df.columns.str.strip()
-                      .str.lower()
-                      .str.replace('\t', '')
-                      .str.replace(' ', '_')
-        )
-
-        # Drop empty columns
-        df = df.dropna(how='all', axis=1)
-
-        print(f"   ✅ Loaded {os.path.basename(path)} ({len(df)} rows, sep='{sep}')")
-        return df
-    except Exception as e:
-        print(f"   ⚠️ Failed to load {path}: {e}")
-        return pd.DataFrame()
-
 def main(out_dir="data/outputs"):
-    print("🚌 Building global bus dataset...\n")
+    print("🌍 Building combined global transport dataset...")
 
     frames = []
 
     # --- 1. FlixBus ---
-    print("▶ Fetching FlixBus routes…")
+    print("\n▶ Fetching FlixBus routes…")
     try:
         df_flix = bus_flixbus.fetch_routes()
         print(f"✅ FlixBus: {len(df_flix)} rows")
@@ -69,30 +44,44 @@ def main(out_dir="data/outputs"):
     except Exception as e:
         print(f"❌ Irish Citylink failed: {e}")
 
-    # --- 4. Vendor CSVs ---
+    # --- 4. AeroDataBox (Air routes) ---
+    print("\n✈️ Fetching AeroDataBox air routes…")
+    try:
+        df_air = air_aerodatabox.fetch_routes()
+        print(f"✅ AeroDataBox: {len(df_air)} rows")
+        frames.append(df_air)
+    except Exception as e:
+        print(f"❌ AeroDataBox failed: {e}")
+
+    # --- 5. Vendor static datasets (Megabus, ALSA, etc.) ---
     print("\n▶ Including vendor datasets…")
     vendor_dir = os.path.join("data", "vendor")
-    vendor_files = glob.glob(os.path.join(vendor_dir, "*.csv"))
-    if not vendor_files:
-        print("⚠️ No vendor CSV files found.")
+    if os.path.exists(vendor_dir):
+        for f in os.listdir(vendor_dir):
+            if f.endswith(".csv"):
+                path = os.path.join(vendor_dir, f)
+                print(f"   → Added vendor dataset: {f}")
+                try:
+                    vdf = pd.read_csv(path)
+                    frames.append(vdf)
+                except Exception as e:
+                    print(f"   ⚠️ Failed to load {f}: {e}")
     else:
-        for vf in vendor_files:
-            vdf = load_vendor_csv(vf)
-            if not vdf.empty:
-                frames.append(vdf)
+        print("⚠️ No vendor directory found")
 
-    # --- 5. Combine everything ---
+    # --- Combine all ---
     if frames:
         df_all = pd.concat(frames, ignore_index=True)
-        print(f"\n✅ Total combined routes: {len(df_all)} rows")
+        print(f"\n✅ Total combined routes: {len(df_all)}")
     else:
-        print("⚠️ No data combined.")
+        print("⚠️ No data to combine.")
         df_all = pd.DataFrame()
 
-    # --- 6. Save ---
+    # --- Save ---
     out_path = os.path.join(out_dir, "world_bus.csv")
-    df_all.to_csv(out_path, index=False, encoding="utf-8")
-    print(f"💾 Saved combined dataset to {out_path}")
+    df_all.to_csv(out_path, index=False)
+    print(f"\n💾 Saved combined dataset to {out_path}")
+
 
 if __name__ == "__main__":
     main("data/outputs")
