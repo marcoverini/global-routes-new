@@ -1,4 +1,4 @@
-name: Global bus data dump
+name: Global routes monthly dump
 
 on:
   workflow_dispatch:
@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      AERODATABOX_API_KEY: ${{ secrets.AERODATABOX_API_KEY }}
+      AERODATABOX_API_HOST: ${{ secrets.AERODATABOX_API_HOST }}
 
     steps:
       - name: Checkout repository
@@ -35,8 +38,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas requests ftfy
 
-      - name: Build monthly dump
+      - name: Build monthly dump (Air + Bus)
         run: |
+          echo "🚌✈️ Building combined bus + air dataset..."
           mkdir -p data/outputs
           PYTHONPATH=$GITHUB_WORKSPACE python -m scripts.build_monthly --out data/outputs
           
@@ -47,12 +51,12 @@ jobs:
           git fetch origin main
           git reset --soft origin/main
           git add data/outputs/world_bus.csv
-          git commit -m "Monthly bus routes update [skip ci]" || echo "No changes to commit"
+          git commit -m "Monthly global routes update [skip ci]" || echo "No changes to commit"
           git pull --rebase origin main || true
           git push origin main || true
 
       - name: Upload artifact for download
         uses: actions/upload-artifact@v4
         with:
-          name: world-bus-routes
+          name: world-routes
           path: data/outputs/world_bus.csv
